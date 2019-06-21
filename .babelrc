@@ -1,0 +1,40 @@
+{
+    "presets" : [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        [
+            "transform-imports", {
+                "@fortawesome/free-solid-svg-icons": {
+                    "transform": "@fortawesome/free-solid-svg-icons/${member}",
+                    "skipDefaultConversion": true
+                },
+                "@fortawesome/free-regular-svg-icons": {
+                    "transform": "@fortawesome/free-regular-svg-icons/${member}",
+                    "skipDefaultConversion": true
+                },
+                "@fortawesome/free-brands-svg-icons": {
+                    "transform": "@fortawesome/free-brands-svg-icons/${member}",
+                    "skipDefaultConversion": true
+                },
+                "reactstrap": {
+                    "transform": "reactstrap/lib/${member}",
+                    "skipDefaultConversion": true
+                },
+                "ramda": {
+                    "transform": "ramda/es/${member}",
+                    "skipDefaultConversion": true
+                },
+            }
+        ],
+        "@babel/plugin-proposal-object-rest-spread",
+        "@babel/plugin-proposal-class-properties",
+        [
+            "babel-plugin-root-import", {
+                "rootPathPrefix": "~",
+                "rootPathSuffix": "src"
+            }
+        ]
+    ]
+}
