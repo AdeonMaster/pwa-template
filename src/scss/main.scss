@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700');
-
-@import './variables.scss';
-@import './bootstrap_override.scss';
-
-h1, h2, h3, h4, h5, h6, p, a {
-  text-overflow: ellipsis;
-}
+@import 'node_modules/bootstrap/scss/bootstrap';
 
 body {
   color: #333;
