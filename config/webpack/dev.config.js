@@ -21,7 +21,7 @@ module.exports = env => ({
     './src/main.js'
   ],
   output: {
-    path: path.resolve(__dirname, '../static/js'),
+    path: path.resolve(__dirname, '../../static/js'),
     filename: '[name].js'
   },
   optimization: {
@@ -48,7 +48,7 @@ module.exports = env => ({
     rules: [
       {
         test: /\.js?/,
-        include: path.resolve(__dirname, '../src'),
+        include: path.resolve(__dirname, '../../src'),
         use: ['babel-loader', 'eslint-loader']
       }, {
         test: /\.css$/,

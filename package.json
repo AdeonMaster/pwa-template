@@ -4,12 +4,12 @@
   "description": "Common pwa template",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack -w --config config/webpack.dev.config.js",
-    "build": "webpack --config config/webpack.prod.config.js",
+    "dev": "webpack -w --config config/webpack/dev.config.js",
+    "build": "webpack --config config/webpack/prod.config.js",
     "upload": "node ftp.js",
     "server": "node server.js",
-    "jest": "jest --config config/jest.config.json",
-    "jest:coverage": "jest --config config/jest.config.json --coverage",
+    "jest": "jest --config config/jest/jest.config.json",
+    "jest:coverage": "jest --config config/jest/jest.config.json --coverage",
     "eslint": "eslint ./src",
     "eslint:fix": "eslint --fix ./src",
     "analyze": "source-map-explorer 'static/js/*.js'"
