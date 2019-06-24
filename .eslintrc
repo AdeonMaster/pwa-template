@@ -40,7 +40,7 @@
   "settings": {
     "import/resolver": "babel-plugin-root-import",
     "react": {
-      "version": "16.7.0"
+      "version": "16.8.6"
     }
   }
 }

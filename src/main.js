@@ -1,4 +1,5 @@
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import 'raf';
 
 import React from 'react';
@@ -10,9 +11,9 @@ import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { createLogger as createLoggerMiddleware } from 'redux-logger';
 
-import rootReducer from './common/redux/rootReducer';
-import rootSaga from './common/redux/rootSagas';
-import App from './common/components/App';
+import rootReducer from './redux/rootReducer';
+import rootSaga from './redux/rootSagas';
+import App from './components/App';
 import './scss/main.scss';
 
 const loggerMiddleware = createLoggerMiddleware();
