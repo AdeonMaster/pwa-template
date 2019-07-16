@@ -17,15 +17,7 @@
                 "@fortawesome/free-brands-svg-icons": {
                     "transform": "@fortawesome/free-brands-svg-icons/${member}",
                     "skipDefaultConversion": true
-                },
-                "reactstrap": {
-                    "transform": "reactstrap/lib/${member}",
-                    "skipDefaultConversion": true
-                },
-                "ramda": {
-                    "transform": "ramda/es/${member}",
-                    "skipDefaultConversion": true
-                },
+                }
             }
         ],
         "@babel/plugin-proposal-export-default-from",

@@ -26,7 +26,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
 const store = createStore(
-  rootReducer, composeEnhancers(applyMiddleware(...middlewares))
+  rootReducer, process.env.NODE_ENV === 'development'
+    ? composeEnhancers(applyMiddleware(...middlewares))
+    : applyMiddleware(...middlewares)
 );
 
 sagaMiddleware.run(rootSaga);
