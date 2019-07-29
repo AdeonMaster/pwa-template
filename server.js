@@ -9,7 +9,7 @@ const app = express();
 
 app.use(compression());
 app.use(express.static(__dirname + '/static', {
-  maxAge: 31557600000
+  // maxAge: 31557600000
 }));
 app.get('*', (_, response) => {
   response.sendFile(path.resolve(__dirname + '/static', 'index.html'));
