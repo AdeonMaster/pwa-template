@@ -9,13 +9,13 @@ const COLOR_PATTERN = {
   DIFF: 'color:#881391',
   PREV: 'color:#4CAF50',
   NEXT: 'color:#03A9F4',
-}
+};
 
 const getFormattedTime = () => {
   const date = new Date();
 
   return `${date.toLocaleTimeString().split(' ')[0]}.${date.getMilliseconds()}`;
-}
+};
 
 const buildLogMessage = name => (lastArgs, lastResult, newArgs, newResult) => {
   const isArgsEqual = equals(lastArgs, newArgs);
@@ -41,7 +41,7 @@ const buildLogMessage = name => (lastArgs, lastResult, newArgs, newResult) => {
   console.groupEnd();
 
   console.groupEnd();
-}
+};
 
 const customMemoize = (func, changeCallback) => {
   const defaultMemoizeInstance = defaultMemoize(func);
@@ -63,14 +63,14 @@ const customMemoize = (func, changeCallback) => {
     }
 
     return result;
-  }
-}
+  };
+};
 
 export default function createLoggedSelector(...args) {
   let name = 'Unknown name';
 
   if (typeof args[0] === 'string') {
-    ;[name] = args;
+    [name] = args;
     args.shift();
   }
 

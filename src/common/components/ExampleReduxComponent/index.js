@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { increment, decrement, add } from '~/redux/example/actions';
+import { increment, decrement, add } from '~/common/redux/example/actions';
 
 class ExampleReduxComponent extends Component {
   handleButtonClick = type => () => {

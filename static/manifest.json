@@ -3,9 +3,9 @@
   "name": "PWA template",
   "icons": [
     {
-      "src": "img/icons/app-icon-48x48.png",
+      "src": "img/icons/web_hi_res_512.png",
       "type": "image/png",
-      "sizes": "48x48"
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",

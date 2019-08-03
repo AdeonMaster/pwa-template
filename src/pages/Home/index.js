@@ -1,5 +1,5 @@
 import React from 'react';
-import ExampleReduxComponent from '~/components/ExampleReduxComponent';
+import ExampleReduxComponent from '~/common/components/ExampleReduxComponent';
 
 const Home = () => (
   <>

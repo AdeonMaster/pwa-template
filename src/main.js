@@ -10,10 +10,10 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from './redux/rootReducer';
-import rootSaga from './redux/rootSagas';
-import App from './components/App';
-import './scss/main.scss';
+import rootReducer from './common/redux/rootReducer';
+import rootSaga from './common/redux/rootSagas';
+import App from './common/components/App';
+import './common/scss/main.scss';
 
 const sagaMiddleware = createSagaMiddleware();
 
