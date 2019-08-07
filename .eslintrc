@@ -31,11 +31,9 @@
     "airbnb-base"
   ],
   "env": {
-    "jest": true
-  },
-  "globals": {
-    "window": true,
-    "document": true
+    "jest": true,
+    "browser": true,
+    "node": true
   },
   "settings": {
     "import/resolver": "babel-plugin-root-import",

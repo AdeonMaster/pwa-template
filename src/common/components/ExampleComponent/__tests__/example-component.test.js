@@ -8,5 +8,5 @@ describe('Example Component', () => {
     const component = shallow(<ExampleComponent value="love" />);
 
     expect(component.getElement()).toMatchSnapshot();
-  })
+  });
 });
