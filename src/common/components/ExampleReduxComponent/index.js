@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import { increment, decrement, add } from '~/common/redux/example/actions';
+import { getValue, getComputedValue } from '~/common/redux/example/selectors';
 
 class ExampleReduxComponent extends Component {
   handleButtonClick = type => () => {
@@ -41,8 +43,9 @@ class ExampleReduxComponent extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  value: state.example.value
+const mapStateToProps = createStructuredSelector({
+  value: getValue,
+  computedValue: getComputedValue
 });
 
 const mapDispatchToProps = {
@@ -53,6 +56,7 @@ const mapDispatchToProps = {
 
 ExampleReduxComponent.propTypes = {
   value: PropTypes.number.isRequired,
+  computedValue: PropTypes.number.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
   add: PropTypes.func.isRequired

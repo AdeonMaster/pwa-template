@@ -1,7 +1,11 @@
 {
   "name": "pwa-template",
   "version": "1.0.0",
-  "description": "Common pwa template",
+  "description": "A lightweight create-react-app alternative for typical React project (React.js, Redux, Redux Sagas, Reselect, Ramda.js and etc.)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdeonMaster/pwa-template.git"
+  },
   "main": "main.js",
   "scripts": {
     "build:watch": "webpack -w --config config/webpack/dev.config.js",
@@ -61,9 +65,6 @@
     "source-map-explorer": "^2.0.1"
   },
   "dependencies": {
-    "core-js": "^3.1.4",
-    "raf": "^3.4.1",
-    "regenerator-runtime": "^0.13.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-brands-svg-icons": "^5.9.0",
     "@fortawesome/free-regular-svg-icons": "^5.9.0",
@@ -72,9 +73,11 @@
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
-    "shortid": "^2.2.14",
-    "ramda": "^0.26.1",
+    "core-js": "^3.1.4",
+    "logged-selector": "git+https://github.com/AdeonMaster/logged-selector.git",
     "prop-types": "^15.7.2",
+    "raf": "^3.4.1",
+    "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-content-loader": "^4.2.1",
     "react-custom-scrollbars": "^4.2.1",
@@ -90,6 +93,8 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "regenerator-runtime": "^0.13.2",
+    "reselect": "^4.0.0",
+    "shortid": "^2.2.14"
   }
 }
