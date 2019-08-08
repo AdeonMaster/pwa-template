@@ -19,4 +19,3 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 # TO DO
 
 - Migrate to eslint v6.0.0
-- Move @adeon/utils to an external dependency

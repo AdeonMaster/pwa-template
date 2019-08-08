@@ -1,5 +1,3 @@
-export default {
-  INCREMENT: 'VALUE_INCREMENT',
-  DECREMENT: 'VALUE_DECREMENT',
-  ADD: 'VALUE_ADD'
-};
+import { buildKeyMirrorEnum } from 'key-mirror-enum';
+
+export default buildKeyMirrorEnum('APP', ['INCREMENT', 'DECREMENT', 'ADD']);
