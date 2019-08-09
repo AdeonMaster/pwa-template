@@ -19,7 +19,7 @@
           "skipDefaultConversion": true
         },
         "ramda": {
-          "transform": "ramda/es/${member}",
+          "transform": "ramda/src/${member}",
           "preventFullImport": true
         },
         "reactstrap": {
