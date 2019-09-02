@@ -8,10 +8,10 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - Install required packages with `npm i`
 - Build app with `npm run build` or `npm run dev`
 - Run app locally with `npm run server`
-- Install `ca.ssl.indexnl.com.crt` certificate inside `cert` folder in order to use SSL on your localhost (See the [detailed installation guide for Windows users](#ssl-certificate-installation-detailed-guide-for-windows))
+- Install `ca.ssl.indexnl.com.crt` certificate inside `server/cert` folder in order to use SSL on your localhost (See the [detailed installation guide for Windows users](#ssl-certificate-installation-detailed-guide-for-windows))
 
 # SSL certificate installation detailed guide for Windows
-- Navigate to `cert` folder inside app working directory
+- Navigate to `server/cert` folder inside app working directory
 - Double click on `ca.ssl.indexnl.com.crt` certificate file
 - Press `Install Certificate` button
 - Select certificate store location and press `Next` (can be skipped by default)

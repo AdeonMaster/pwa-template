@@ -5,12 +5,14 @@ const path = require('path');
 const port = process.env.PORT || 3030;
 const app = express();
 
+const serverRootPath = path.join(__dirname + '/../static');
+
 app.use(compression());
-app.use(express.static(__dirname + '/static', {
+app.use(express.static(serverRootPath, {
   // maxAge: 31557600000
 }));
 app.get('*', (_, response) => {
-  response.sendFile(path.resolve(__dirname + '/static', 'index.html'));
+  response.sendFile(serverRootPath, 'index.html');
 });
 
 app.listen(port, () => {

@@ -1,20 +1,11 @@
-const webpack = require('webpack');
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const autoprefixer = require('autoprefixer');
 
-const postCssLoaderConfig = {
-  loader: 'postcss-loader',
-  options: {
-    ident: 'postcss',
-    plugins: [
-      autoprefixer
-    ]
-  }
-};
+const rules = require('./rules');
+const { miniCssExtractPlugin, devEnvPlugin } = require('./plugins');
+
 console.log('Development build..');
 
-module.exports = env => ({
+module.exports = () => ({
   mode: 'development',
   devtool: 'source-map',
   entry: [
@@ -30,45 +21,10 @@ module.exports = env => ({
     }
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
-    new MiniCssExtractPlugin({
-      filename: '../css/[name].css',
-      chunkFilename: '../css/[id].css'
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-		NODE_ENV: JSON.stringify('development')
-      }
-    })
+    miniCssExtractPlugin,
+    devEnvPlugin
   ],
   module: {
-    rules: [
-      {
-        test: /\.js?/,
-        include: path.resolve(__dirname, '../../src'),
-        use: ['babel-loader', 'eslint-loader']
-      }, {
-        test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          postCssLoaderConfig
-        ]
-      }, {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          postCssLoaderConfig,
-          'sass-loader'
-        ]
-      }, {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000'
-      }
-    ]
+    rules
   }
 });

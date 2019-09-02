@@ -7,17 +7,19 @@ const fs = require('fs');
 const port = process.env.PORT || 8080;
 const app = express();
 
+const serverRootPath = path.join(__dirname + '/../static');
+
 app.use(compression());
-app.use(express.static(__dirname + '/static', {
+app.use(express.static(serverRootPath, {
   // maxAge: 31557600000
 }));
 app.get('*', (_, response) => {
-  response.sendFile(path.resolve(__dirname + '/static', 'index.html'));
+  response.sendFile(serverRootPath, 'index.html');
 });
 
 https.createServer({
-  key: fs.readFileSync('cert/localhost.key'),
-  cert: fs.readFileSync('cert/localhost.crt')
+  key: fs.readFileSync(path.resolve(__dirname + '/cert/localhost.key')),
+  cert: fs.readFileSync(path.resolve(__dirname + '/cert/localhost.crt')),
 }, app)
 .listen(port, () => {
   console.log(`Server started on port ${port}. Visit https://localhost:${port}/`);
