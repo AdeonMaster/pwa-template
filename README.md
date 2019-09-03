@@ -26,6 +26,10 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - Keep deps "up to date"
 - Optimize newly added deps with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
 
+# Issues
+
+- Service worker is not working properly (total revision required)
+
 # TO DO
 
 - Migrate to eslint v6.0.0
