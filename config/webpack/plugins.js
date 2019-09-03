@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ServiceWorkerGeneratorWebpackPlugin = require('./service-worker-generator-webpack-plugin');
 
 module.exports = {
   optimizeCssAssetsPlugin: new OptimizeCSSAssetsPlugin({}),
@@ -35,5 +36,8 @@ module.exports = {
   }),
   copyWebpackPlugin: new CopyWebpackPlugin([
     { from: 'static' }
-  ])
+  ]),
+  serviceWorkerGeneratorWebpackPlugin: new ServiceWorkerGeneratorWebpackPlugin({
+    assetMatch: '.(js|css|html|ico|json|png)$'
+  })
 };

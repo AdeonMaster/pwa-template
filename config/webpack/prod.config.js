@@ -8,7 +8,8 @@ const {
   optimizeCssAssetsPlugin,
   miniCssExtractPlugin,
   htmlWebpackPlugin,
-  copyWebpackPlugin
+  copyWebpackPlugin,
+  serviceWorkerGeneratorWebpackPlugin
 } = require('./plugins');
 
 console.log('Production build..');
@@ -44,7 +45,8 @@ module.exports = () => ({
     optimizeCssAssetsPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,
-    copyWebpackPlugin
+    copyWebpackPlugin,
+    serviceWorkerGeneratorWebpackPlugin
   ],
   module: {
     rules

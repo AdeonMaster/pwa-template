@@ -2,7 +2,7 @@ const path = require('path');
 
 const rules = require('./rules');
 const {
-  cleanWebpackPlugin, miniCssExtractPlugin, devEnvPlugin, htmlWebpackPlugin, copyWebpackPlugin
+  cleanWebpackPlugin, miniCssExtractPlugin, devEnvPlugin, htmlWebpackPlugin, copyWebpackPlugin, serviceWorkerGeneratorWebpackPlugin
 } = require('./plugins');
 
 console.log('Development build..');
@@ -34,7 +34,8 @@ module.exports = () => ({
     devEnvPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,
-    copyWebpackPlugin
+    copyWebpackPlugin,
+    serviceWorkerGeneratorWebpackPlugin
   ],
   module: {
     rules
