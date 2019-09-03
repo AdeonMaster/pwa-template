@@ -1,32 +1,50 @@
 const path = require('path');
 
 const rules = require('./rules');
-const { terserPlugin, optimizeCssAssetsPlugin, miniCssExtractPlugin, prodEnvPlugin } = require('./plugins');
+const {
+  terserPlugin,
+  prodEnvPlugin,
+  cleanWebpackPlugin,
+  optimizeCssAssetsPlugin,
+  miniCssExtractPlugin,
+  htmlWebpackPlugin,
+  copyWebpackPlugin
+} = require('./plugins');
 
 console.log('Production build..');
 
 module.exports = () => ({
   mode: 'production',
   entry: [
-    './src/main.js'
+    './src/index.js'
   ],
   output: {
-    path: path.resolve(__dirname, '../../static/js'),
-    filename: '[name].js'
+    filename: '[name].[contenthash].js'
   },
   devtool: 'false',
   optimization: {
     minimizer: [
       terserPlugin
     ],
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
     }
   },
   plugins: [
+    prodEnvPlugin,
+    cleanWebpackPlugin,
     optimizeCssAssetsPlugin,
     miniCssExtractPlugin,
-    prodEnvPlugin
+    htmlWebpackPlugin,
+    copyWebpackPlugin
   ],
   module: {
     rules

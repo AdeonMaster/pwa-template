@@ -2,12 +2,15 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   optimizeCssAssetsPlugin: new OptimizeCSSAssetsPlugin({}),
   miniCssExtractPlugin: new MiniCssExtractPlugin({
-    filename: '../css/[name].css',
-    chunkFilename: '../css/[id].css'
+    filename: '[name].[hash].css',
+    // chunkFilename: '[id].[hash].css'
   }),
   devEnvPlugin: new webpack.DefinePlugin({
     'process.env': {
@@ -24,5 +27,14 @@ module.exports = {
     parallel: true,
     sourceMap: true,
     extractComments: true
-  })
+  }),
+  cleanWebpackPlugin: new CleanWebpackPlugin(),
+  htmlWebpackPlugin: new HtmlWebpackPlugin({
+    title: 'PWA Template',
+    template: 'src/template.html',
+    publicPath : '/jest'
+  }),
+  copyWebpackPlugin: new CopyWebpackPlugin([
+    { from: 'static' }
+  ])
 };

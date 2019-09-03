@@ -1,7 +1,9 @@
 const path = require('path');
 
 const rules = require('./rules');
-const { miniCssExtractPlugin, devEnvPlugin } = require('./plugins');
+const {
+  cleanWebpackPlugin, miniCssExtractPlugin, devEnvPlugin, htmlWebpackPlugin, copyWebpackPlugin
+} = require('./plugins');
 
 console.log('Development build..');
 
@@ -9,20 +11,30 @@ module.exports = () => ({
   mode: 'development',
   devtool: 'source-map',
   entry: [
-    './src/main.js'
+    './src/index.js'
   ],
   output: {
-    path: path.resolve(__dirname, '../../static/js'),
-    filename: '[name].js'
+    filename: '[name].[contenthash].js'
   },
   optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
     }
   },
   plugins: [
+    cleanWebpackPlugin,
+    devEnvPlugin,
     miniCssExtractPlugin,
-    devEnvPlugin
+    htmlWebpackPlugin,
+    copyWebpackPlugin
   ],
   module: {
     rules
