@@ -9,8 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   optimizeCssAssetsPlugin: new OptimizeCSSAssetsPlugin({}),
   miniCssExtractPlugin: new MiniCssExtractPlugin({
-    filename: '[name].[hash].css',
-    // chunkFilename: '[id].[hash].css'
+    filename: '[name].[hash].css'
   }),
   devEnvPlugin: new webpack.DefinePlugin({
     'process.env': {
