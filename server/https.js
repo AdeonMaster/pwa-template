@@ -14,7 +14,7 @@ app.use(express.static(serverRootPath, {
   // maxAge: 31557600000
 }));
 app.get('*', (_, response) => {
-  response.sendFile(serverRootPath, 'index.html');
+  response.sendFile(path.resolve(serverRootPath, 'index.html'));
 });
 
 https.createServer({

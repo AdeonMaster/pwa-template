@@ -1,5 +1,3 @@
-const path = require('path');
-
 const rules = require('./rules');
 const {
   cleanWebpackPlugin, miniCssExtractPlugin, devEnvPlugin, htmlWebpackPlugin, copyWebpackPlugin, serviceWorkerGeneratorWebpackPlugin
@@ -14,7 +12,8 @@ module.exports = () => ({
     './src/index.js'
   ],
   output: {
-    filename: '[name].[contenthash].js'
+    filename: '[name].[contenthash].js',
+    publicPath: '/'
   },
   optimization: {
     moduleIds: 'hashed',

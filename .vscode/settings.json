@@ -1,5 +1,5 @@
 {
     "editor.tabSize": 2,
-    "javascript.validate.enable": false,
-    "terminal.integrated.scrollback": 100000000
+    "javascript.validate.enable": true,
+    "terminal.integrated.scrollback": 200000
 }

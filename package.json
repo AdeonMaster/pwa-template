@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/AdeonMaster/pwa-template.git"
   },
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "build:watch": "webpack -w --config config/webpack/dev.config.js",
     "build:dev": "webpack --config config/webpack/dev.config.js",

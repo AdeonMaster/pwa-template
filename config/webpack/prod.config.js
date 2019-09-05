@@ -1,5 +1,3 @@
-const path = require('path');
-
 const rules = require('./rules');
 const {
   terserPlugin,
@@ -20,7 +18,8 @@ module.exports = () => ({
     './src/index.js'
   ],
   output: {
-    filename: '[name].[contenthash].js'
+    filename: '[name].[contenthash].js',
+    publicPath: '/'
   },
   devtool: 'false',
   optimization: {
