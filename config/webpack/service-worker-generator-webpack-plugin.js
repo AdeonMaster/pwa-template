@@ -70,11 +70,9 @@ self.addEventListener('fetch', function(event) {
     );
   }
 });`;
-
+        callback();
         fs.writeFile(`dist/${file}`, content, error => {
           if (error) throw error;
-
-          callback();
         });
       }
     );
