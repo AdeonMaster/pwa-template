@@ -1,12 +1,14 @@
 const rules = require('./rules');
 const {
-  cleanWebpackPlugin, miniCssExtractPlugin, devEnvPlugin, htmlWebpackPlugin, copyWebpackPlugin, serviceWorkerGeneratorWebpackPlugin
+  cleanWebpackPlugin, miniCssExtractPlugin, envPlugin, htmlWebpackPlugin, copyWebpackPlugin, offlinePlugin
 } = require('./plugins');
+
+const mode = 'development';
 
 console.log('Development build..');
 
 module.exports = () => ({
-  mode: 'development',
+  mode,
   devtool: 'source-map',
   entry: [
     './src/index.js'
@@ -30,11 +32,11 @@ module.exports = () => ({
   },
   plugins: [
     cleanWebpackPlugin,
-    devEnvPlugin,
+    envPlugin(mode),
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    serviceWorkerGeneratorWebpackPlugin
+    offlinePlugin
   ],
   module: {
     rules

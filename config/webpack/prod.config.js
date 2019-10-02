@@ -1,19 +1,21 @@
 const rules = require('./rules');
 const {
   terserPlugin,
-  prodEnvPlugin,
+  envPlugin,
   cleanWebpackPlugin,
   optimizeCssAssetsPlugin,
   miniCssExtractPlugin,
   htmlWebpackPlugin,
   copyWebpackPlugin,
-  serviceWorkerGeneratorWebpackPlugin
+  offlinePlugin
 } = require('./plugins');
+
+const mode = 'production';
 
 console.log('Production build..');
 
 module.exports = () => ({
-  mode: 'production',
+  mode,
   entry: [
     './src/index.js'
   ],
@@ -39,13 +41,13 @@ module.exports = () => ({
     }
   },
   plugins: [
-    prodEnvPlugin,
+    envPlugin(mode),
     cleanWebpackPlugin,
     optimizeCssAssetsPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    serviceWorkerGeneratorWebpackPlugin
+    offlinePlugin
   ],
   module: {
     rules

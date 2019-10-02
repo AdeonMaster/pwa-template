@@ -24,21 +24,5 @@
 			<p>Sorry, but our app requires to enable JavaScript. Here are the <a href="https://www.enable-javascript.com/"> instructions how to enable JavaScript in your web browser</a>.</p>
 		</noscript>
 		<div id="root"></div>
-		<script>
-		  if ('serviceWorker' in navigator) {
-				window.addEventListener('load', function() {
-			  	navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-						console.log('ServiceWorker registration successful with scope: ', registration.scope);
-			  	}, function(err) {
-						console.warn('ServiceWorker registration failed: ', err);
-			  	}).catch(function(err) {
-						console.log(err)
-			  	});
-				});
-		  } else {
-				console.warn('ServiceWorker is not supported');
-		  }
-		</script>
-
 	</body>
 </html>

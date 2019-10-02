@@ -2,6 +2,8 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import 'raf';
 
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -14,6 +16,8 @@ import rootReducer from './common/redux/rootReducer';
 import rootSaga from './common/redux/rootSagas';
 import App from './common/components/App';
 import './common/scss/main.scss';
+
+OfflinePluginRuntime.install();
 
 const sagaMiddleware = createSagaMiddleware();
 

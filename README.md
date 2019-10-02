@@ -28,7 +28,7 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 
 # Issues
 
-- Service worker is not working properly (total revision required)
+- Server: Requesting a non static asset file cause to return index.html document instead of 404 error
 
 # TO DO
 

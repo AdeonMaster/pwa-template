@@ -80,6 +80,7 @@
     "core-js": "^3.1.4",
     "key-mirror-enum": "git+https://github.com/AdeonMaster/key-mirror-enum.git",
     "logged-selector": "git+https://github.com/AdeonMaster/logged-selector.git",
+    "offline-plugin": "^5.0.7",
     "prop-types": "^15.7.2",
     "raf": "^3.4.1",
     "ramda": "^0.26.1",
