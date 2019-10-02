@@ -3,7 +3,7 @@ import ExampleReduxComponent from '~/common/components/ExampleReduxComponent';
 
 const Home = () => (
   <>
-  <p>Hello world!</p>
+  <p>Hello world! This is home! ggw</p>
   <br/>
   <ExampleReduxComponent />
   </>

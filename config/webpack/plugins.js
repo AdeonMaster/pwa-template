@@ -27,7 +27,7 @@ module.exports = {
   }),
   cleanWebpackPlugin: new CleanWebpackPlugin({
     // cleanAfterEveryBuildPatterns: ['static*.*', '!static1.js'],
-    cleanStaleWebpackAssets: true
+    cleanStaleWebpackAssets: false
   }),
   htmlWebpackPlugin: new HtmlWebpackPlugin({
     title: 'PWA Template',
