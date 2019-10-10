@@ -8,6 +8,7 @@
   },
   "plugins": [
     "react",
+    "react-hooks",
     "jest"
   ],
   "rules": {
@@ -23,7 +24,9 @@
 		"no-shadow": "off",
     "react/prop-types": "warn",
     "no-nested-ternary": "off",
-    "no-bitwise": "off"
+    "no-bitwise": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "extends": [
     "eslint:recommended",
