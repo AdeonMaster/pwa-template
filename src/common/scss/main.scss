@@ -1,5 +1,3 @@
-@import 'node_modules/bootstrap/scss/bootstrap';
-
-body {
-  color: #333;
-}
+@import './variables.scss';
+@import './bootstrap_extend.scss';
+@import './animations.scss';

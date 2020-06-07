@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`markup-text should render properly 1`] = `
+<span>
+  <p>
+    Hello world!
+  </p>
+</span>
+`;
+
+exports[`markup-text should render properly with different tag 1`] = `
+<a>
+  <p>
+    Hello world!
+  </p>
+</a>
+`;

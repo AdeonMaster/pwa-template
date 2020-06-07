@@ -6,12 +6,12 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 
 - Clone repo to your working directory
 - Install required packages with `npm i`
-- Build app with `npm run build` or `npm run dev`
-- Run app locally with `npm run server`
-- Install `ca.ssl.indexnl.com.crt` certificate inside `server/cert` folder in order to use SSL on your localhost (See the [detailed installation guide for Windows users](#ssl-certificate-installation-detailed-guide-for-windows))
+- Build app with `npm run build`, `npm run build:dev` or `npm run build:watch`
+- Run app locally with `npm run server` or `npm run server:ssl`
+- Install `ca.ssl.indexnl.com.crt` certificate inside `server/certificate` folder in order to use SSL on your localhost (See the [detailed installation guide for Windows users](#ssl-certificate-installation-detailed-guide-for-windows))
 
 # SSL certificate installation detailed guide for Windows
-- Navigate to `server/cert` folder inside app working directory
+- Navigate to `server/certificate` folder inside app working directory
 - Double click on `ca.ssl.indexnl.com.crt` certificate file
 - Press `Install Certificate` button
 - Select certificate store location and press `Next` (can be skipped by default)
@@ -19,7 +19,7 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - In the opened window select `Trusted Root Certification Authorities` and press `Ok`
 - Make sure `Trusted Root Certification Authorities` appeared in certificate store input field and press `Next`
 - In the newly opened window press `Finish` button
-- After successful installation close all browser instances in order the new settings take effect
+- After successful installation close all browser instances in order new settings to take effect
 
 # Recommendations
 
@@ -29,7 +29,4 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 # Issues
 
 - Server: Requesting a non static asset file cause to return index.html document instead of 404 error
-
-# TO DO
-
-- Migrate to eslint v6.0.0
+- Environment: spdy is not supporting Node.js versions greater than `10.18.1`

@@ -1,13 +1,15 @@
 const rules = require('./rules');
 const {
-  terserPlugin,
+  packageVersionPlugin,
   envPlugin,
+  terserPlugin,
   cleanWebpackPlugin,
   optimizeCssAssetsPlugin,
   miniCssExtractPlugin,
   htmlWebpackPlugin,
   copyWebpackPlugin,
-  offlinePlugin
+  offlinePlugin,
+  wrapperPlugin,
 } = require('./plugins');
 
 const mode = 'production';
@@ -42,12 +44,14 @@ module.exports = () => ({
   },
   plugins: [
     envPlugin(mode),
+    packageVersionPlugin(),
     cleanWebpackPlugin,
     optimizeCssAssetsPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    offlinePlugin
+    offlinePlugin,
+    wrapperPlugin
   ],
   module: {
     rules

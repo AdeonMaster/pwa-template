@@ -2,44 +2,49 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import 'raf';
 
-import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 
-import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from './common/redux/rootReducer';
-import rootSaga from './common/redux/rootSagas';
-import App from './common/components/App';
+import rootReducer from './common/reducers/rootReducer';
+import rootSaga from './common/sagas/rootSagas';
+import App from './app';
 import './common/scss/main.scss';
-
-OfflinePluginRuntime.install();
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [
-  thunkMiddleware,
-  sagaMiddleware
-];
-/* eslint-disable no-underscore-dangle */
+const middlewares = [sagaMiddleware];
+/* eslint-disable-next-line no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-/* eslint-enable */
 
 const store = createStore(
-  rootReducer, process.env.NODE_ENV === 'development'
+  rootReducer,
+  process.env.NODE_ENV === 'development'
     ? composeEnhancers(applyMiddleware(...middlewares))
-    : applyMiddleware(...middlewares)
+    : applyMiddleware(...middlewares),
 );
 
 sagaMiddleware.run(rootSaga);
+
+if (process.env.NODE_ENV === 'production') {
+  // eslint-disable-next-line global-require
+  require('offline-plugin/runtime').install();
+}
+
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  whyDidYouRender(React, {
+    trackAllPureComponents: true,
+  });
+}
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

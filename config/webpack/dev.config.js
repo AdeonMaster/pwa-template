@@ -1,6 +1,6 @@
 const rules = require('./rules');
 const {
-  cleanWebpackPlugin, miniCssExtractPlugin, envPlugin, htmlWebpackPlugin, copyWebpackPlugin, offlinePlugin
+  packageVersionPlugin, envPlugin, miniCssExtractPlugin, htmlWebpackPlugin, copyWebpackPlugin, wrapperPlugin
 } = require('./plugins');
 
 const mode = 'development';
@@ -31,12 +31,12 @@ module.exports = () => ({
     }
   },
   plugins: [
-    cleanWebpackPlugin,
     envPlugin(mode),
+    packageVersionPlugin(),
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    offlinePlugin
+    wrapperPlugin
   ],
   module: {
     rules

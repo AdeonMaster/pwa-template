@@ -1,7 +1,7 @@
 const express = require('express');
 const compression = require('compression');
 const path = require('path');
-const https = require('https');
+const spdy = require('spdy');
 const fs = require('fs');
 
 const port = process.env.PORT || 8080;
@@ -17,9 +17,9 @@ app.get('*', (_, response) => {
   response.sendFile(path.resolve(serverRootPath, 'index.html'));
 });
 
-https.createServer({
-  key: fs.readFileSync(path.resolve(__dirname + '/cert/localhost.key')),
-  cert: fs.readFileSync(path.resolve(__dirname + '/cert/localhost.crt')),
+spdy.createServer({
+  key: fs.readFileSync(path.resolve(__dirname + '/certificate/localhost.key')),
+  cert: fs.readFileSync(path.resolve(__dirname + '/certificate/localhost.crt')),
 }, app)
 .listen(port, () => {
   console.log(`Server started on port ${port}. Visit https://localhost:${port}/`);

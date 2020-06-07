@@ -1,9 +1,9 @@
 {
-  "short_name": "pwa-template",
-  "name": "PWA template",
+  "short_name": "PWA Template",
+  "name": "Progressive Web Application Template",
   "description": "pwa-template",
-  "background_color": "#0e4d80",
-  "theme_color": "#0e4d80",
+  "background_color": "#222222",
+  "theme_color": "#222222",
   "display": "standalone",
   "dir": "ltr",
   "orientation": "portrait-primary",
