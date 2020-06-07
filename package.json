@@ -20,7 +20,8 @@
     "jest": "jest --config config/jest/jest.config.json",
     "jest:watch": "jest --config config/jest/jest.config.json --watch",
     "jest:coverage": "jest --config config/jest/jest.config.json --coverage",
-    "analyze": "source-map-explorer 'static/js/*.js'"
+    "analyze": "source-map-explorer 'static/js/*.js'",
+    "deploy": "gh-pages -d dist"
   },
   "husky": {
     "hooks": {
@@ -65,6 +66,7 @@
     "eslint-plugin-sonarjs": "^0.5.0",
     "express": "^4.17.1",
     "file-loader": "^6.0.0",
+    "gh-pages": "^3.0.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
