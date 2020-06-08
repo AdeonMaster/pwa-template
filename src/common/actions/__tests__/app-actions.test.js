@@ -1,5 +1,5 @@
 import APP from '../../types/app-types';
-import { init, initSuccess, initFailure, setLang } from '../app-actions';
+import { init, initSuccess, initFailure, setLang, locationChange } from '../app-actions';
 import { LANG } from '~/common/constants';
 
 describe('app-actions', () => {
@@ -26,6 +26,17 @@ describe('app-actions', () => {
       type: APP.SET_LANG,
       payload: {
         lang: LANG.EN,
+      },
+    });
+  });
+
+  it('locationChange', () => {
+    expect(locationChange({ pathname: '/new' })).toEqual({
+      type: APP.LOCATION_CHANGE,
+      payload: {
+        location: {
+          pathname: '/new',
+        },
       },
     });
   });

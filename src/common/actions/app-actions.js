@@ -19,3 +19,10 @@ export const setLang = (lang) => ({
     lang,
   },
 });
+
+export const locationChange = (location) => ({
+  type: APP.LOCATION_CHANGE,
+  payload: {
+    location,
+  },
+});

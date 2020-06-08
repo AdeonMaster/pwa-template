@@ -7,6 +7,7 @@ describe('app-types', () => {
       INIT_SUCCESS: 'APP.INIT_SUCCESS',
       INIT_FAILURE: 'APP.INIT_FAILURE',
       SET_LANG: 'APP.SET_LANG',
+      LOCATION_CHANGE: 'APP.LOCATION_CHANGE',
     });
   });
 });
