@@ -53,7 +53,8 @@ module.exports = {
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true,
       useShortDoctype: true,
-      minifyCSS: true
+      minifyCSS: true,
+      minifyJS: true
     }
   }),
   copyWebpackPlugin: new CopyWebpackPlugin({
