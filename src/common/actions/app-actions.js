@@ -26,3 +26,10 @@ export const locationChange = (location) => ({
     location,
   },
 });
+
+export const toggleMenu = (isMenuOpen) => ({
+  type: APP.TOGGLE_MENU,
+  payload: {
+    isMenuOpen,
+  },
+});

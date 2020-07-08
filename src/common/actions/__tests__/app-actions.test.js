@@ -1,5 +1,12 @@
 import APP from '../../types/app-types';
-import { init, initSuccess, initFailure, setLang, locationChange } from '../app-actions';
+import {
+  init,
+  initSuccess,
+  initFailure,
+  setLang,
+  locationChange,
+  toggleMenu,
+} from '../app-actions';
 import { LANG } from '~/common/constants';
 
 describe('app-actions', () => {
@@ -37,6 +44,15 @@ describe('app-actions', () => {
         location: {
           pathname: '/new',
         },
+      },
+    });
+  });
+
+  it('toggleMenu', () => {
+    expect(toggleMenu(true)).toEqual({
+      type: APP.TOGGLE_MENU,
+      payload: {
+        isMenuOpen: true,
       },
     });
   });

@@ -1,6 +1,8 @@
+import STRINGS from './strings';
+
 export default {
-  'edit': 'Отредактируйте src/page/home.js и сохраните для перезагрузки.',
-  'learn': 'Учите React',
-  'something-went-wrong': 'Уупс, что-то пошло не так',
-  'back': 'Назад',
+  [STRINGS.EDIT]: 'Отредактируйте src/page/home.js и сохраните для перезагрузки.',
+  [STRINGS.LEARN]: 'Учите React',
+  [STRINGS.SOMETHING_WENT_WRONG]: 'Уупс, что-то пошло не так',
+  [STRINGS.BACK]: 'Назад',
 };

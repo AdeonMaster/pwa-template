@@ -6,6 +6,7 @@ export const initialState = {
   version: process.env.PACKAGE_VERSION,
   isLoading: true,
   error: '',
+  isMenuOpen: false,
   lang:
     namespacedLocalStorage.getItem('lang') ||
     LANG[(getBrowserLang() || '').split('-')[1]] ||
@@ -36,6 +37,11 @@ const setLang = (state, { payload: { lang } }) => {
   };
 };
 
+const toggleMenu = (state, { payload: { isMenuOpen } }) => ({
+  ...state,
+  isMenuOpen,
+});
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case APP.INIT_SUCCESS:
@@ -46,6 +52,9 @@ export default (state = initialState, action) => {
 
     case APP.SET_LANG:
       return setLang(state, action);
+
+    case APP.TOGGLE_MENU:
+      return toggleMenu(state, action);
 
     default:
       return state;

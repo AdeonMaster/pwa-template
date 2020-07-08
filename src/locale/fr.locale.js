@@ -1,6 +1,8 @@
+import STRINGS from './strings';
+
 export default {
-  'edit': 'Modifiez src/page/home.js et enregistrez pour recharger.',
-  'learn': 'Apprendre React',
-  'something-went-wrong': 'Oups, quelque chose s\'est mal passé',
-  'back': 'Retour',
+  [STRINGS.EDIT]: 'Modifiez src/page/home.js et enregistrez pour recharger.',
+  [STRINGS.LEARN]: 'Apprendre React',
+  [STRINGS.SOMETHING_WENT_WRONG]: 'Oups, quelque chose s\'est mal passé',
+  [STRINGS.BACK]: 'Retour',
 };

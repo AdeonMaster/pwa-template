@@ -1,6 +1,8 @@
+import STRINGS from './strings';
+
 export default {
-  'edit': 'Edit src/page/home.js and save to reload.',
-  'learn': 'Learn React',
-  'something-went-wrong': 'Oops, something went wrong',
-  'back': 'Back',
+  [STRINGS.EDIT]: 'Edit src/page/home.js and save to reload.',
+  [STRINGS.LEARN]: 'Learn React',
+  [STRINGS.SOMETHING_WENT_WRONG]: 'Oops, something went wrong',
+  [STRINGS.BACK]: 'Back',
 };

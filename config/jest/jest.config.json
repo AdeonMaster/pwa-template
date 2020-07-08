@@ -2,6 +2,9 @@
   "rootDir": "../../",
   "testMatch": ["**/__tests__/**/*.(spec|test).js?(x)"],
   "setupFilesAfterEnv": ["<rootDir>/config/jest/setupTests.js"],
+  "moduleNameMapper": {
+    "\\.(css|sass|scss)$": "identity-obj-proxy"
+  },
   "verbose": true,
   "collectCoverage": false,
   "coverageReporters": ["text", "html"]

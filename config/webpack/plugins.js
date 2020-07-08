@@ -39,10 +39,7 @@ module.exports = {
     sourceMap: true,
     extractComments: true
   }),
-  cleanWebpackPlugin: new CleanWebpackPlugin({
-    // cleanAfterEveryBuildPatterns: ['static*.*', '!static1.js'],
-    cleanStaleWebpackAssets: false
-  }),
+  cleanWebpackPlugin: new CleanWebpackPlugin(),
   htmlWebpackPlugin: new HtmlWebpackPlugin({
     template: 'src/template.html',
     scriptLoading: 'defer',
