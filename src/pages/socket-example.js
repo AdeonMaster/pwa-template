@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
+import { Button } from 'reactstrap';
 
-import { Button } from '~/@adeon/bootstrap';
 import Page from './components/page';
-
+import { useLocalization } from '~/common/components/localization';
 import {
   socketAttachConnection,
   socketDetachConnection,
@@ -35,9 +35,10 @@ const SocketExample = () => {
       ),
     [dispatch],
   );
+  const dictionary = useLocalization();
 
   return (
-    <Page title="Socket example">
+    <Page title={dictionary.get('page.socket-example')}>
       <div className="container">
         <h5 className="text-center mb-4">Socket example</h5>
 

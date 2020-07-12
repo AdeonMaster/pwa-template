@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, ButtonGroup } from 'reactstrap';
 
-import { Button, ButtonGroup } from '~/@adeon/bootstrap';
 import Page from './components/page';
-
 import { useLocalization } from '~/common/components/localization';
 import { getLang } from '~/common/selectors/app-selectors';
 import { LANG } from '~/common/constants';
@@ -20,7 +19,7 @@ const Home = () => {
   const handleLangChange = useCallback((newLang) => () => dispatch(setLang(newLang)), [dispatch]);
 
   return (
-    <Page title="Home">
+    <Page title={dictionary.get('page.home')}>
       <div className="container">
         <div className="text-center mb-4">
           <img

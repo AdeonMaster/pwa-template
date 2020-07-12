@@ -6,3 +6,7 @@ export const LANG = {
   FR: 'fr',
   RU: 'ru',
 };
+
+export const MODAL = {
+  EXAMPLE: 'example',
+};

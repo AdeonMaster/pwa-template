@@ -1,8 +1,11 @@
-import STRINGS from './strings';
-
 export default {
-  [STRINGS.EDIT]: 'Edit src/page/home.js and save to reload.',
-  [STRINGS.LEARN]: 'Learn React',
-  [STRINGS.SOMETHING_WENT_WRONG]: 'Oops, something went wrong',
-  [STRINGS.BACK]: 'Back',
+  'page.home': 'Home',
+  'page.socket-example': 'Socket Example',
+  'page.modal-example': 'Modal Example',
+  'page.not-found': 'Page not found',
+
+  'edit': 'Edit src/page/home.js and save to reload.',
+  'learn': 'Learn React',
+  'something-went-wrong': 'Oops, something went wrong',
+  'back': 'Back',
 };

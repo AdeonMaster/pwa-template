@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from './header';
 
-const rootClassName = 'bg-dark h-100 text-light';
+const rootClassName = 'bg-dark text-light h-100';
 const wrapperStyle = {
   minHeight: '100vh',
 };

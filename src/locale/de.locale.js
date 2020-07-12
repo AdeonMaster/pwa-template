@@ -1,8 +1,11 @@
-import STRINGS from './strings';
-
 export default {
-  [STRINGS.EDIT]: 'Bearbeiten src/page/home.js und speichern, um neu zu laden.',
-  [STRINGS.LEARN]: 'Lernen React',
-  [STRINGS.SOMETHING_WENT_WRONG]: 'Ups! Irgendwas lief schief',
-  [STRINGS.BACK]: 'Zurück',
+  'page.home': 'Startseite',
+  'page.socket-example': 'Sockel Beispiel',
+  'page.modal-example': 'Modales Beispiel',
+  'page.not-found': 'Seite nicht gefunden',
+
+  'edit': 'Bearbeiten src/page/home.js und speichern, um neu zu laden.',
+  'learn': 'Lernen React',
+  'something-went-wrong': 'Ups! Irgendwas lief schief',
+  'back': 'Zurück',
 };

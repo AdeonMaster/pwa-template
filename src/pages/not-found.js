@@ -8,7 +8,7 @@ const NotFound = () => {
   const dictionary = useLocalization();
 
   return (
-    <Page title="Page not found">
+    <Page title={dictionary.get('page.not-found')}>
       <div className="container">
         <h5 className="text-center mb-4">{dictionary.get('something-went-wrong')}</h5>
         <h5 className="text-center mb-5">
