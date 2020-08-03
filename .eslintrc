@@ -16,7 +16,6 @@
   "rules": {
 		"max-len": "off",
     "no-console": "warn",
-    "linebreak-style": "off",
     "react/no-unescaped-entities": "off",
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",
