@@ -9,7 +9,7 @@ const {
   htmlWebpackPlugin,
   copyWebpackPlugin,
   offlinePlugin,
-  wrapperPlugin,
+  wrapperPlugin
 } = require('./plugins');
 
 const mode = 'production';

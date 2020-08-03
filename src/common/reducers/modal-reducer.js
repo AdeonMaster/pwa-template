@@ -1,4 +1,4 @@
-import { forEachObjIndexed } from 'ramda';
+import { mapObjIndexed, omit } from 'ramda';
 
 import MODAL from '~/common/types/modal-types';
 
@@ -20,14 +20,12 @@ const close = (state, { payload: { type } }) => ({
   },
 });
 
-const closeModals = (state) =>
-  forEachObjIndexed(
-    (modal) => ({
-      ...modal,
-      isOpen: false,
-    }),
-    state,
-  );
+const closeModals = mapObjIndexed((modal) => ({
+  ...modal,
+  isOpen: false,
+}));
+
+const modalClosed = (state, { payload: { type } }) => omit([type], state);
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -39,6 +37,9 @@ export default (state = initialState, action) => {
 
     case MODAL.CLOSE_ALL:
       return closeModals(state);
+
+    case MODAL.CLOSED:
+      return modalClosed(state, action);
 
     default:
       return state;

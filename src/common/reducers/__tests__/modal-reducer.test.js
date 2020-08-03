@@ -1,5 +1,5 @@
 import modalReducer, { initialState } from '../modal-reducer';
-import { openModal, closeModal, closeModals } from '~/common/actions/modal-actions';
+import { openModal, closeModal, closeModals, modalClosed } from '~/common/actions/modal-actions';
 
 const MOCKED_MODAL_ID = 'mocked-modal-id';
 const MOCKED_MODAL_ID2 = 'mocked-modal-id2';
@@ -27,9 +27,6 @@ describe('modal-reducer', () => {
     expect(modalReducer(state, action)).toEqual({
       [MOCKED_MODAL_ID]: {
         isOpen: false,
-        params: {
-          userid: MOCKED_USER_ID,
-        },
       },
     });
   });
@@ -57,6 +54,27 @@ describe('modal-reducer', () => {
       },
       [MOCKED_MODAL_ID2]: {
         isOpen: false,
+      },
+    });
+  });
+
+  it('modalClosed action', () => {
+    const state = {
+      [MOCKED_MODAL_ID]: {
+        isOpen: false,
+        params: {
+          userid: MOCKED_USER_ID,
+        },
+      },
+      [MOCKED_MODAL_ID2]: {
+        isOpen: true,
+      },
+    };
+    const action = modalClosed(MOCKED_MODAL_ID);
+
+    expect(modalReducer(state, action)).toEqual({
+      [MOCKED_MODAL_ID2]: {
+        isOpen: true,
       },
     });
   });

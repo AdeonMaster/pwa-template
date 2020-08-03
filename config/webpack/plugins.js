@@ -39,10 +39,15 @@ module.exports = {
     sourceMap: true,
     extractComments: true
   }),
-  cleanWebpackPlugin: new CleanWebpackPlugin(),
+  cleanWebpackPlugin: new CleanWebpackPlugin({
+    cleanStaleWebpackAssets: false,
+  }),
   htmlWebpackPlugin: new HtmlWebpackPlugin({
     template: 'src/template.html',
     scriptLoading: 'defer',
+    meta: {
+      ['test']: 'ggwp',
+    },
     minify: {
       collapseWhitespace: true,
       removeComments: true,

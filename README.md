@@ -1,13 +1,10 @@
 # Description
-
 A lightweight `create-react-app` alternative for typical React project (React.js, Redux, Redux Sagas, Reselect, Ramda.js and etc.)
 
 # Before you start
-
 To speedup development and debugging it's essential to install [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=ru) and [Redux Developer Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ru) as plugins for your browser.
 
 # Installation
-
 - Clone repo to your working directory
 - Install required packages with `npm i`
 - Build app with `npm run build`, `npm run build:dev` or `npm run build:watch`
@@ -26,12 +23,13 @@ To speedup development and debugging it's essential to install [React Developer 
 - After successful installation close all browser instances in order new settings to take effect
 
 # Recommendations
-
 - Keep deps "up to date"
 - Optimize newly added deps with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
 
-# Issues
+# TO DO
+- Move JS syntax error wrapper to a custom webpack plugin
 
+# Issues
 - Server: Requesting a non static asset file cause to return index.html document instead of 404 error
 - Environment: spdy is not supporting Node.js versions greater than `10.18.1`
 - App: offline-plugin isn't unregistering service worker if app is running in DEV mode after PROD 

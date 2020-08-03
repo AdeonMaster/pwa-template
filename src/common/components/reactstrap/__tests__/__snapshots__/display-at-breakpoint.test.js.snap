@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`display-at-breakpoint should render properly 1`] = `
+<div
+  class="d-none d-sm-block"
+>
+  <p>
+    This text is visible only at sm breakpoint
+  </p>
+</div>
+`;

@@ -6,6 +6,8 @@ describe('modal-types', () => {
       OPEN: 'MODAL.OPEN',
       CLOSE: 'MODAL.CLOSE',
       CLOSE_ALL: 'MODAL.CLOSE_ALL',
+      OPENED: 'MODAL.OPENED',
+      CLOSED: 'MODAL.CLOSED',
     });
   });
 });
