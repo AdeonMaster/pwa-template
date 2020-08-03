@@ -10,7 +10,10 @@ import ErrorBoundary from '~/common/components/error-boundary';
 import ScrollContext from '~/common/components/scroll-context';
 import LocationListener from '~/common/components/location-listener';
 
+import SideMenu from '~/pages/components/side-menu';
 import Home from '~/pages/home';
+import SocketExample from '~/pages/socket-example';
+import ModalExample from '~/pages/modal-example';
 import NotFound from '~/pages/not-found';
 
 import { LANG } from '~/common/constants';
@@ -42,21 +45,26 @@ const App = () => {
     dispatch(init());
   }, [dispatch]);
 
-  return isLoading ? (
-    <SplashScreen />
-  ) : (
+  return (
     <ErrorBoundary>
       <LocalizationProvider lang={lang} dictionaries={dictionaries}>
-        <BrowserRouter>
-          <LocationListener>
-            <ScrollContext>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route component={NotFound} />
-              </Switch>
-            </ScrollContext>
-          </LocationListener>
-        </BrowserRouter>
+        {isLoading ? (
+          <SplashScreen />
+        ) : (
+          <BrowserRouter>
+            <LocationListener>
+              <SideMenu />
+              <ScrollContext>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/socket-example" component={SocketExample} />
+                  <Route exact path="/modal-example" component={ModalExample} />
+                  <Route component={NotFound} />
+                </Switch>
+              </ScrollContext>
+            </LocationListener>
+          </BrowserRouter>
+        )}
       </LocalizationProvider>
     </ErrorBoundary>
   );

@@ -1,6 +1,6 @@
 const rules = require('./rules');
 const {
-  packageVersionPlugin, envPlugin, miniCssExtractPlugin, htmlWebpackPlugin, copyWebpackPlugin, wrapperPlugin
+  packageVersionPlugin, envPlugin, miniCssExtractPlugin, htmlWebpackPlugin, copyWebpackPlugin, wrapperPlugin, cleanWebpackPlugin, staticRouteGeneratorPlugin
 } = require('./plugins');
 
 const mode = 'development';
@@ -33,10 +33,12 @@ module.exports = () => ({
   plugins: [
     envPlugin(mode),
     packageVersionPlugin(),
+    cleanWebpackPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    wrapperPlugin
+    wrapperPlugin,
+    staticRouteGeneratorPlugin
   ],
   module: {
     rules

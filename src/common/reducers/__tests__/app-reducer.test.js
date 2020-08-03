@@ -1,5 +1,5 @@
 import appReducer, { initialState } from '../app-reducer';
-import { initSuccess, initFailure, setLang } from '~/common/actions/app-actions';
+import { initSuccess, initFailure, setLang, toggleMenu } from '~/common/actions/app-actions';
 import { LANG } from '~/common/constants';
 
 describe('app-reducer', () => {
@@ -31,6 +31,16 @@ describe('app-reducer', () => {
     expect(appReducer(state, action)).toEqual({
       ...initialState,
       lang: LANG.DE,
+    });
+  });
+
+  it('toggleMenu action', () => {
+    const state = initialState;
+    const action = toggleMenu(true);
+
+    expect(appReducer(state, action)).toEqual({
+      ...initialState,
+      isMenuOpen: true,
     });
   });
 });
