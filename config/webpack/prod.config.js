@@ -9,7 +9,8 @@ const {
   htmlWebpackPlugin,
   copyWebpackPlugin,
   offlinePlugin,
-  wrapperPlugin
+  wrapperPlugin,
+  staticRouteGeneratorPlugin
 } = require('./plugins');
 
 const mode = 'production';
@@ -51,7 +52,8 @@ module.exports = () => ({
     htmlWebpackPlugin,
     copyWebpackPlugin,
     offlinePlugin,
-    wrapperPlugin
+    wrapperPlugin,
+    staticRouteGeneratorPlugin
   ],
   module: {
     rules

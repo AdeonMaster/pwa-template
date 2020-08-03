@@ -1,48 +1,32 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const fs = require('fs');
-
-const mkDirChainSync = path => {
-	const parts = path.split('/');
-
-	for(let i = 0; i < parts.length; ++i) {
-		const partialPath = parts.slice(0, i + 1).join('/');
-
-		if (!fs.existsSync(partialPath)) {
-			fs.mkdirSync(partialPath);
-		}
-	}
-};
 
 class StaticRouteGeneratorPlugin {
   constructor(options = {}) {
     this.routes = options.routes || [];
   }
 
-  apply (compiler) {
+  apply(compiler) {
     compiler.hooks.compilation.tap('StaticRouteGeneratorPlugin', (compilation) => {
-      // Static Plugin interface |compilation |HOOK NAME | register listener 
       HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync(
-        'StaticRouteGeneratorPlugin', // <-- Set a meaningful name here for stacktraces
+        'StaticRouteGeneratorPlugin',
         (data, cb) => {
-          const destinationDir = 'dist'; 
-
           this.routes.forEach(route => {
             let tmp = data.html;
 
+            // replace existing meta tags
             Object.keys(route.meta).forEach((metaKey) => {
               const regExp = new RegExp(`<meta name="${metaKey}" content=".+?">`);
 
               tmp = tmp.replace(regExp, `<meta name="${metaKey}" content="${route.meta[metaKey]}">`);
-            })
+            });
 
-            const path = `${destinationDir}${route.path}`;
-            mkDirChainSync(path);
-            fs.writeFileSync(`${path}/index.html`, tmp);
+            // Insert this list into the webpack build as a new file asset
+            compilation.assets[`${route.path}/index.html`] = {
+              source: () => tmp,
+              size: () => tmp.length,
+            };
           });
 
-          console.log(data);
-
-          // Tell webpack to move on
           cb(null, data)
         }
       )

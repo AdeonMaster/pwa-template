@@ -1,8 +1,7 @@
 const rules = require('./rules');
 const {
-  packageVersionPlugin, envPlugin, miniCssExtractPlugin, htmlWebpackPlugin, copyWebpackPlugin, wrapperPlugin, cleanWebpackPlugin
+  packageVersionPlugin, envPlugin, miniCssExtractPlugin, htmlWebpackPlugin, copyWebpackPlugin, wrapperPlugin, cleanWebpackPlugin, staticRouteGeneratorPlugin
 } = require('./plugins');
-const StaticRouteGeneratorPlugin = require('./custom-plugins/static-route-generator');
 
 const mode = 'development';
 
@@ -39,21 +38,7 @@ module.exports = () => ({
     htmlWebpackPlugin,
     copyWebpackPlugin,
     wrapperPlugin,
-    new StaticRouteGeneratorPlugin({
-      routes: [
-        {
-          path: '/socket-example',
-          meta: {
-            description: 'This is a socket example page'
-          }
-        }, {
-          path: '/modal-example',
-          meta: {
-            description: 'This is a modal example page'
-          }
-        }
-      ]
-    })
+    staticRouteGeneratorPlugin
   ],
   module: {
     rules
