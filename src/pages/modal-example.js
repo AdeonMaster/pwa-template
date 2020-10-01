@@ -4,21 +4,23 @@ import { Button } from 'reactstrap';
 
 import Page from './components/page';
 import ExampleModal from '~/modals/example-modal';
-import { useLocalization } from '~/common/components/localization';
+import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 import { openModal } from '~/common/actions/modal-actions';
 import { MODAL } from '~/common/constants';
 
 const ModalExample = () => {
   const dispatch = useDispatch();
-  const handleModalOpen = useCallback(() => dispatch(openModal(MODAL.EXAMPLE)), [dispatch]);
-  const dictionary = useLocalization();
+  const handleModalOpen = useCallback((type) => () => dispatch(openModal(type)), [dispatch]);
+  const dictionary = useDictionary();
 
   return (
     <Page title={dictionary.get('page.modal-example')}>
       <div className="container">
-        <h5 className="text-center mb-4">Modal example</h5>
+        <h5 className="text-center mb-4">{dictionary.get('page.modal-example')}</h5>
 
-        <Button onClick={handleModalOpen}>Open example modal</Button>
+        <Button color="primary" onClick={handleModalOpen(MODAL.EXAMPLE)}>
+          Open example modal
+        </Button>
 
         <ExampleModal />
       </div>

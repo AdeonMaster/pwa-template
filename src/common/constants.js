@@ -7,6 +7,20 @@ export const LANG = {
   RU: 'ru',
 };
 
+export const LANG_NAME = {
+  [LANG.EN]: 'English',
+  [LANG.DE]: 'Deutsche',
+  [LANG.FR]: 'Français',
+  [LANG.RU]: 'Русский',
+};
+
 export const MODAL = {
   EXAMPLE: 'example',
+  PREFERENCES: 'preferences',
+};
+
+export const FORM_STATE = {
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  FAILURE: 'failure',
 };

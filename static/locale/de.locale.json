@@ -1,0 +1,19 @@
+{
+  "page.home": "Startseite",
+  "page.socket-example": "Sockel Beispiel",
+  "page.modal-example": "Modales Beispiel",
+  "page.form-example": "Formular Beispiel",
+  "page.push-notification-example": "Beispiel für eine Push-Benachrichtigung",
+  "page.not-found": "Seite nicht gefunden",
+
+  "edit": "Bearbeiten src/page/home.js und speichern, um neu zu laden.",
+  "learn": "Lernen React",
+  "something-went-wrong": "Ups! Irgendwas lief schief",
+  "back": "Zurück",
+  "language": "Sprache",
+  "preferences": "Einstellungen",
+
+  "preferences.language": "Sprache",
+  "preferences.theme": "Thema",
+  "preferences.language.tip": "Wählen Sie die Sprache aus, die Sie mit der App verwenden möchten"
+}

@@ -1,0 +1,19 @@
+{
+  "page.home": "Главная",
+  "page.socket-example": "Socket соединение",
+  "page.modal-example": "Пример модального окно",
+  "page.form-example": "Пример формы",
+  "page.push-notification-example": "Пример Push уведомлений",
+  "page.not-found": "Страница не найдена",
+
+  "edit": "Отредактируйте src/page/home.js и сохраните для перезагрузки.",
+  "learn": "Учите React",
+  "something-went-wrong": "Уупс, что-то пошло не так",
+  "back": "Назад",
+  "language": "Язык",
+  "preferences": "Настройки",
+
+  "preferences.language": "Язык",
+  "preferences.theme": "Тема",
+  "preferences.language.tip": "Выберите язык приложения"
+}

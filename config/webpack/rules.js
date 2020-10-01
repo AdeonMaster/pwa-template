@@ -23,10 +23,12 @@ const cssLoaderConfig = {
 const postCssLoaderConfig = {
   loader: 'postcss-loader',
   options: {
-    ident: 'postcss',
-    plugins: [
-      autoprefixer
-    ]
+    postcssOptions: {
+      ident: 'postcss',
+      plugins: [
+        autoprefixer
+      ]
+    }
   }
 };
 

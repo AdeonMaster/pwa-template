@@ -2,11 +2,11 @@
 
 exports[`ErrorScreen should render properly 1`] = `
 <div
-  class="bg-danger vw-100 vh-100 d-flex justify-content-center align-items-center"
+  class="bg-danger vw-100 vh-100 d-flex flex-column justify-content-center align-items-center text-white"
 >
   <svg
     aria-hidden="true"
-    class="svg-inline--fa fa-dizzy fa-w-16 text-white font-size-256 w-100"
+    class="svg-inline--fa fa-dizzy fa-w-16 font-size-256 w-100"
     data-icon="dizzy"
     data-prefix="far"
     focusable="false"

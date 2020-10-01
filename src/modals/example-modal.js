@@ -1,28 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
-import withModal from '~/common/hocs/with-modal';
+import useModal from '~/common/hooks/use-modal';
 import { MODAL } from '~/common/constants';
 
-const ExampleModal = ({ isOpen, toggle }) => (
-  <Modal isOpen={isOpen} toggle={toggle} size="lg">
-    <ModalHeader toggle={toggle}>Header</ModalHeader>
-    <ModalBody>Body text</ModalBody>
-    <ModalFooter>
-      <Button color="primary" size="sm" onClick={toggle}>
-        Ok
-      </Button>
-      <Button color="link" size="sm" onClick={toggle}>
-        Cancel
-      </Button>
-    </ModalFooter>
-  </Modal>
-);
+const ExampleModal = () => {
+  const { isOpen, toggle, onOpened, onClosed } = useModal(MODAL.EXAMPLE);
 
-ExampleModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  return (
+    <Modal isOpen={isOpen} toggle={toggle} onOpened={onOpened} onClosed={onClosed} size="lg">
+      <ModalHeader toggle={toggle}>Header</ModalHeader>
+      <ModalBody>Body text</ModalBody>
+      <ModalFooter>
+        <Button color="primary" size="sm" onClick={toggle}>
+          Ok
+        </Button>
+        <Button color="link" size="sm" onClick={toggle}>
+          Cancel
+        </Button>
+      </ModalFooter>
+    </Modal>
+  );
 };
 
-export default withModal(MODAL.EXAMPLE)(ExampleModal);
+export default ExampleModal;

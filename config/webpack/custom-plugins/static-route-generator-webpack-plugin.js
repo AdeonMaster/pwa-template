@@ -1,14 +1,14 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-class StaticRouteGeneratorPlugin {
+class StaticRouteGeneratorWebpackPlugin {
   constructor(options = {}) {
     this.routes = options.routes || [];
   }
 
   apply(compiler) {
-    compiler.hooks.compilation.tap('StaticRouteGeneratorPlugin', (compilation) => {
+    compiler.hooks.compilation.tap('StaticRouteGeneratorWebpackPlugin', (compilation) => {
       HtmlWebpackPlugin.getHooks(compilation).beforeEmit.tapAsync(
-        'StaticRouteGeneratorPlugin',
+        'StaticRouteGeneratorWebpackPlugin',
         (data, cb) => {
           this.routes.forEach(route => {
             let tmp = data.html;
@@ -34,4 +34,4 @@ class StaticRouteGeneratorPlugin {
   }
 }
 
-module.exports = StaticRouteGeneratorPlugin
+module.exports = StaticRouteGeneratorWebpackPlugin

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLocalization } from '~/common/components/localization';
+import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 
 import Page from './components/page';
 
 const NotFound = () => {
-  const dictionary = useLocalization();
+  const dictionary = useDictionary();
 
   return (
     <Page title={dictionary.get('page.not-found')}>

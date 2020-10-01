@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button } from 'reactstrap';
 
 import Page from './components/page';
-import { useLocalization } from '~/common/components/localization';
+import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 import {
   socketAttachConnection,
   socketDetachConnection,
@@ -35,7 +35,7 @@ const SocketExample = () => {
       ),
     [dispatch],
   );
-  const dictionary = useLocalization();
+  const dictionary = useDictionary();
 
   return (
     <Page title={dictionary.get('page.socket-example')}>
@@ -52,13 +52,13 @@ const SocketExample = () => {
           />
 
           <div>
-            <Button className="mr-2 mb-2" color="light" outline onClick={handleSocketConnect}>
+            <Button className="mr-2 mb-2" color="primary" onClick={handleSocketConnect}>
               Connect
             </Button>
-            <Button className="mr-2 mb-2" color="light" outline onClick={handleSocketDisconnect}>
+            <Button className="mr-2 mb-2" color="primary" onClick={handleSocketDisconnect}>
               Disconnect
             </Button>
-            <Button className="mr-2 mb-2" color="light" outline onClick={handleSocketEmit}>
+            <Button className="mr-2 mb-2" color="primary" onClick={handleSocketEmit}>
               Emit
             </Button>
           </div>

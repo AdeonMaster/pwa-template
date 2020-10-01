@@ -29,10 +29,7 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-if (process.env.NODE_ENV === 'production') {
-  // eslint-disable-next-line global-require
-  require('offline-plugin/runtime').install();
-}
+require('offline-plugin/runtime').install();
 
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line global-require
