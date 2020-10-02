@@ -1,4 +1,4 @@
-import { getLang, getIsLoading, getVersion, getIsMenuOpen } from '../app-selectors';
+import { getLang, getIsLoading, getVersion, getIsMenuOpen, getIsDarkMode } from '../app-selectors';
 import { LANG } from '~/common/constants';
 
 const state = {
@@ -7,6 +7,7 @@ const state = {
     isLoading: false,
     version: '1.0.0',
     isMenuOpen: true,
+    isDarkMode: true,
   },
 };
 
@@ -25,5 +26,9 @@ describe('app-selectors', () => {
 
   it('getIsMenuOpen selector', () => {
     expect(getIsMenuOpen(state)).toEqual(state.app.isMenuOpen);
+  });
+
+  it('getIsDarkMode selector', () => {
+    expect(getIsDarkMode(state)).toEqual(state.app.isDarkMode);
   });
 });

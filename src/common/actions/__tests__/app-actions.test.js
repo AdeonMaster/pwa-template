@@ -6,6 +6,7 @@ import {
   setLang,
   locationChange,
   toggleMenu,
+  toggleDarkMode,
 } from '../app-actions';
 import { LANG } from '~/common/constants';
 
@@ -53,6 +54,15 @@ describe('app-actions', () => {
       type: APP.TOGGLE_MENU,
       payload: {
         isMenuOpen: true,
+      },
+    });
+  });
+
+  it('toggleDarkMode', () => {
+    expect(toggleDarkMode(true)).toEqual({
+      type: APP.TOGGLE_DARK_MODE,
+      payload: {
+        isDarkMode: true,
       },
     });
   });

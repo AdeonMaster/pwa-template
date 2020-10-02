@@ -7,4 +7,5 @@ export default buildKeyMirrorEnum('APP', [
   'SET_LANG',
   'LOCATION_CHANGE',
   'TOGGLE_MENU',
+  'TOGGLE_DARK_MODE',
 ]);

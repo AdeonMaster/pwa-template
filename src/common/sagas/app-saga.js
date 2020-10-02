@@ -9,7 +9,7 @@ import { getVersion, getIsMenuOpen } from '~/common/selectors/app-selectors';
 
 import { loadAllLocalizationSaga } from '~/@adeon/localization/saga/localization-saga';
 
-const MAX_APP_INIT_DELAY = 300;
+export const MAX_APP_INIT_DELAY = 300;
 
 export function* bootstrapSaga() {
   yield loadAllLocalizationSaga(values(LANG));

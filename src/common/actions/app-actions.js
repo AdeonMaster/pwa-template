@@ -33,3 +33,10 @@ export const toggleMenu = (isMenuOpen) => ({
     isMenuOpen,
   },
 });
+
+export const toggleDarkMode = (isDarkMode) => ({
+  type: APP.TOGGLE_DARK_MODE,
+  payload: {
+    isDarkMode,
+  },
+});

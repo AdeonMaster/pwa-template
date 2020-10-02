@@ -1,5 +1,11 @@
 import appReducer, { initialState } from '../app-reducer';
-import { initSuccess, initFailure, setLang, toggleMenu } from '~/common/actions/app-actions';
+import {
+  initSuccess,
+  initFailure,
+  setLang,
+  toggleMenu,
+  toggleDarkMode,
+} from '~/common/actions/app-actions';
 import { LANG } from '~/common/constants';
 
 describe('app-reducer', () => {
@@ -41,6 +47,16 @@ describe('app-reducer', () => {
     expect(appReducer(state, action)).toEqual({
       ...initialState,
       isMenuOpen: true,
+    });
+  });
+
+  it('toggleDarkMode action', () => {
+    const state = initialState;
+    const action = toggleDarkMode(true);
+
+    expect(appReducer(state, action)).toEqual({
+      ...initialState,
+      isDarkMode: true,
     });
   });
 });

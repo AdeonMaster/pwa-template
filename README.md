@@ -1,14 +1,6 @@
 # Description
 A lightweight `create-react-app` alternative for typical React project (React.js, Redux, Redux Sagas, Reselect, Ramda.js and etc.)
 
-# Before you start
-Here is the essential list of tools required to use this app:
-- [Node.js](https://nodejs.org/en/download/)
-- (For Windows only) [Git for Windows](https://git-scm.com/download/win) 
-- [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=ru) for your browser
-- [Redux Developer Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ru) as plugin for your browser
-- [Postman](https://www.postman.com/)
-
 # Installation
 - Clone repo to your working directory
 - Install required packages with `npm i`
@@ -37,6 +29,11 @@ Here is the essential list of tools required to use this app:
 - Move `ca.ssl.indexnl.com.crt` to your Android device
 - Install `ca.ssl.indexnl.com.crt` file by clicking on it
 - Enter `Localhost root ca` into the certificate name field and press `Ok`
+
+# List of useful debuging tools
+- [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=ru) for Chrome browser
+- [Redux Developer Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ru) for Chrome browser
+- [Postman](https://www.postman.com/)
 
 # Recommendations
 - Keep deps "up to date"

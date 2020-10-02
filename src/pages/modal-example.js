@@ -10,8 +10,9 @@ import { MODAL } from '~/common/constants';
 
 const ModalExample = () => {
   const dispatch = useDispatch();
-  const handleModalOpen = useCallback((type) => () => dispatch(openModal(type)), [dispatch]);
   const dictionary = useDictionary();
+
+  const handleModalOpen = useCallback((type) => () => dispatch(openModal(type)), [dispatch]);
 
   return (
     <Page title={dictionary.get('page.modal-example')}>

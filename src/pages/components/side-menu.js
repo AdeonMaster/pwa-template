@@ -11,8 +11,9 @@ import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 const SideMenu = () => {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(getIsMenuOpen);
-  const handleToggle = useCallback(() => dispatch(toggleMenu(!isMenuOpen)), [isMenuOpen, dispatch]);
   const dictionary = useDictionary();
+
+  const handleToggle = useCallback(() => dispatch(toggleMenu(!isMenuOpen)), [isMenuOpen, dispatch]);
 
   return (
     <DrawerMenu isOpen={isMenuOpen} toggle={handleToggle}>

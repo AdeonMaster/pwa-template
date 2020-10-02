@@ -9,6 +9,7 @@ describe('app-types', () => {
       SET_LANG: 'APP.SET_LANG',
       LOCATION_CHANGE: 'APP.LOCATION_CHANGE',
       TOGGLE_MENU: 'APP.TOGGLE_MENU',
+      TOGGLE_DARK_MODE: 'APP.TOGGLE_DARK_MODE',
     });
   });
 });

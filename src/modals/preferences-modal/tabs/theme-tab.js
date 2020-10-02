@@ -1,5 +1,8 @@
 import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { CustomInput } from 'reactstrap';
+import { toggleDarkMode } from '~/common/actions/app-actions';
+import { getIsDarkMode } from '~/common/selectors/app-selectors';
 // import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 
 const switchTheme = (name) => {
@@ -15,10 +18,15 @@ const switchTheme = (name) => {
 
 const ThemeTab = () => {
   // const dictionary = useDictionary();
+  const isDarkMode = useSelector(getIsDarkMode);
+  const dispatch = useDispatch();
 
   const handleThemeChange = useCallback(
-    ({ target: { checked } }) => switchTheme(checked ? 'dark-theme' : 'light-theme'),
-    [],
+    ({ target: { checked } }) => {
+      dispatch(toggleDarkMode(checked));
+      switchTheme(checked ? 'dark-theme' : 'light-theme');
+    },
+    [dispatch],
   );
 
   return (
@@ -29,6 +37,7 @@ const ThemeTab = () => {
         id="switch-theme"
         name="switch-theme"
         label="Turn on dark bootstrap theme"
+        defaultChecked={isDarkMode}
         onChange={handleThemeChange}
       />
     </>

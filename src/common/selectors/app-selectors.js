@@ -12,3 +12,5 @@ export const getIsLoading = createSelector(appProp, propOr(true, 'isLoading'));
 export const getVersion = createSelector(appProp, propOr('unknown', 'version'));
 
 export const getIsMenuOpen = createSelector(appProp, propOr(false, 'isMenuOpen'));
+
+export const getIsDarkMode = createSelector(appProp, propOr(false, 'isDarkMode'));
