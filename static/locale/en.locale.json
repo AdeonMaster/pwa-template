@@ -12,8 +12,10 @@
   "back": "Back",
   "language": "Language",
   "preferences": "Preferences",
+  "notifications": "Notifications",
 
   "preferences.language": "Language",
   "preferences.theme": "Theme",
-  "preferences.language.tip": "Choose the language you’d like to use with app"
+  "preferences.language.tip": "Choose the language you’d like to use with app",
+  "preferences.notifications": "Notifications"
 }

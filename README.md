@@ -13,6 +13,10 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - [How to set up Chrome remote device debugging](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/local-server)
 - [SSL certificate installation detailed guide for Android device](https://michielsioen.be/2019-11-23-the-pwa-experiment-pt2-debugging/)
 
+chrome://inspect/#devices
+## Chrome remote devices port forwarding
+8080 localhost:8080
+
 # SSL certificate installation detailed guide for Windows
 - Navigate to `server/certificate` folder inside app working directory
 - Double click on `ca.ssl.indexnl.com.crt` certificate file
@@ -40,6 +44,9 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - Optimize newly added deps with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
 
 # TO DO
+- Add socket connection status & custom message payload
+- Add notification preferences logic
+- Inject custom ServiceWorker code by `ServiceWorker.entry` option
 - Add custom error logging service
 
 # Issues

@@ -1,6 +1,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import 'raf';
+import OfflinePluginRuntime from 'offline-plugin/runtime';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -29,7 +30,10 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-require('offline-plugin/runtime').install();
+// service-worker
+OfflinePluginRuntime.install({
+  onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+});
 
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line global-require

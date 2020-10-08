@@ -12,8 +12,10 @@
   "back": "Назад",
   "language": "Язык",
   "preferences": "Настройки",
+  "notifications": "Уведомления",
 
   "preferences.language": "Язык",
   "preferences.theme": "Тема",
-  "preferences.language.tip": "Выберите язык приложения"
+  "preferences.language.tip": "Выберите язык приложения",
+  "preferences.notifications": "Уведомления"
 }

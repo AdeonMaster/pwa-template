@@ -70,7 +70,11 @@ module.exports = {
     appShell: '/',
     externals: [
       '/'
-    ]
+    ],
+    autoUpdate: 1000 * 60 * 60, // 1 hour
+    ServiceWorker: {
+      events: true,
+    }
   }),
   wrapperPlugin: new WrapperPlugin({
     test: /\.js$/, // only wrap output of bundle files with '.js' extension 
