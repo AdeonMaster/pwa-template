@@ -1,20 +1,21 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+// import React, { useCallback } from 'react';
 import { CustomInput } from 'reactstrap';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 
 const NotificationsTab = () => {
   const dictionary = useDictionary();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const handleNotificationsChange = useCallback(
-    ({ target: { checked } }) => {
-      // dispatch(toggleDarkMode(checked));
-      // switchTheme(checked ? 'dark-theme' : 'light-theme');
-    },
-    [dispatch],
-  );
+  // const handleNotificationsChange = useCallback(
+  //   ({ target: { checked } }) => {
+  //     dispatch(toggleDarkMode(checked));
+  //     switchTheme(checked ? 'dark-theme' : 'light-theme');
+  //   },
+  //   [dispatch],
+  // );
 
   return (
     <>
@@ -25,7 +26,7 @@ const NotificationsTab = () => {
         name="notifications"
         label="Enable notifications"
         // defaultChecked={isDarkMode}
-        onChange={handleNotificationsChange}
+        // onChange={handleNotificationsChange}
       />
     </>
   );

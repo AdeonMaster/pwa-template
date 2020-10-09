@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 
-import Page from './components/page';
+import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import Page from '~/pages/common/components/page';
 
 const NotFound = () => {
   const dictionary = useDictionary();

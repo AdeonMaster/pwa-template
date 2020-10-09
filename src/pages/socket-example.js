@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
-import Page from './components/page';
+import Page from '~/pages/common/components/page';
 import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 import {
   socketAttachConnection,
@@ -16,9 +16,15 @@ const urlInputStyle = {
   maxWidth: '300px',
 };
 
+const defaultMessage = `{
+  "age": 24,
+  "sex": "male"
+}`;
+
 const SocketExample = () => {
   const dispatch = useDispatch();
   const [url, setUrl] = useState(DEFAULT_SOCKET_URL);
+  const [payload, setPayload] = useState(defaultMessage);
   const handleUrlChange = useCallback((event) => setUrl(event.target.value), [setUrl]);
   const handleSocketConnect = useCallback(() => dispatch(socketAttachConnection(url)), [
     url,
@@ -26,15 +32,13 @@ const SocketExample = () => {
   ]);
   const handleSocketDisconnect = useCallback(() => dispatch(socketDetachConnection()), [dispatch]);
   const handleSocketEmit = useCallback(
-    () =>
-      dispatch(
-        socketEmitMesage('TestSocketMessage', {
-          age: 24,
-          sex: 'male',
-        }),
-      ),
-    [dispatch],
+    () => dispatch(socketEmitMesage('TestSocketMessage', JSON.parse(payload))),
+    [dispatch, payload],
   );
+  const handlePayloadChange = useCallback(({ target: { value } }) => setPayload(value), [
+    setPayload,
+  ]);
+
   const dictionary = useDictionary();
 
   return (
@@ -62,6 +66,8 @@ const SocketExample = () => {
               Emit
             </Button>
           </div>
+
+          <Input type="textarea" value={payload} onChange={handlePayloadChange} />
         </div>
       </div>
     </Page>

@@ -17,5 +17,14 @@
   "preferences.language": "Язык",
   "preferences.theme": "Тема",
   "preferences.language.tip": "Выберите язык приложения",
-  "preferences.notifications": "Уведомления"
+  "preferences.notifications": "Уведомления",
+
+  "validation-rule.default": "Ошибка проверки поля",
+  "validation-rule.required": "Пожалуйста, заполните это поле",
+  "validation-rule.pattern": "Значение поля не соответствует шаблону",
+  "validation-rule.validator": "Ошибка проверки поля",
+  "validation-rule.maxLength": "Значение поля слишком длинное",
+  "validation-rule.minLength": "Значение поля слишком короткое",
+  "validation-rule.max": "Значение поля слишком большое",
+  "validation-rule.min":  "Значение поля слишком маленькое"
 }

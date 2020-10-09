@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page from './components/page';
+import Page from '~/pages/common/components/page';
 import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 
 const reactIconStyle = {

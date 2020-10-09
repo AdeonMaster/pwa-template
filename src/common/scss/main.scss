@@ -11,3 +11,11 @@
 @import 'node_modules/@fortawesome/fontawesome-svg-core/styles'; // Import the CSS
 
 @import 'bootstrap_extend.scss';
+
+.invalid-tooltip {
+  position: relative;
+  top: 0px;
+}
+select.form-control.is-invalid {
+  background-position: right 1rem center;
+}

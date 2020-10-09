@@ -8,7 +8,7 @@ import ErrorBoundary from '~/common/components/error-boundary';
 import ScrollContext from '~/common/components/scroll-context';
 import LocationListener from '~/common/components/location-listener';
 
-import SideMenu from '~/pages/components/side-menu';
+import SideMenu from '~/pages/common/components/side-menu';
 import Home from '~/pages/home';
 import SocketExample from '~/pages/socket-example';
 import ModalExample from '~/pages/modal-example';

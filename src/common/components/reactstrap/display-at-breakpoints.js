@@ -6,7 +6,7 @@ import classnames from '~/common/utils/classnames';
 const DisplayAtBreakpoints = ({ breakpoints, display, children }) => {
   const className = useMemo(
     () => classnames(['d-none', ...breakpoints.map((breakpoint) => `d-${breakpoint}-${display}`)]),
-    [breakpoints],
+    [breakpoints, display],
   );
 
   return <div className={className}>{children}</div>;

@@ -13,4 +13,14 @@ describe('display-at-breakpoint', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  it('should render properly with custom display', () => {
+    const { container } = render(
+      <DisplayAtBreakpoint breakpoint="sm" display="inline">
+        <p>This text is visible only at sm breakpoint</p>
+      </DisplayAtBreakpoint>,
+    );
+
+    expect(container.firstChild).toHaveClass('d-sm-inline');
+  });
 });

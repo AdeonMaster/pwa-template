@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 
 import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
-import Page from '~/pages/components/page';
+import Page from '~/pages/common/components/page';
 import {
   askUserForNotificationPermissions,
   sendPushNotification,
