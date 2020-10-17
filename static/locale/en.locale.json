@@ -1,0 +1,30 @@
+{
+  "page.home": "Home",
+  "page.socket-example": "Socket Example",
+  "page.modal-example": "Modal Example",
+  "page.form-example": "Form Example",
+  "page.push-notification-example": "Push Notification Example",
+  "page.not-found": "Page not found",
+
+  "edit": "Edit src/page/home.js and save to reload.",
+  "learn": "Learn React",
+  "something-went-wrong": "Oops, something went wrong",
+  "back": "Back",
+  "language": "Language",
+  "preferences": "Preferences",
+  "notifications": "Notifications",
+
+  "preferences.language": "Language",
+  "preferences.theme": "Theme",
+  "preferences.language.tip": "Choose the language you’d like to use with app",
+  "preferences.notifications": "Notifications",
+
+  "validation-rule.default": "Field validation failed",
+  "validation-rule.required": "Please fill out this field",
+  "validation-rule.pattern": "Field value does not match pattern",
+  "validation-rule.validator": "Field validation failed",
+  "validation-rule.maxLength": "Field value is too long",
+  "validation-rule.minLength": "Field value is too short",
+  "validation-rule.max": "Field value is too big",
+  "validation-rule.min":  "Field value is too small"
+}

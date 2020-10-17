@@ -1,9 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 
-import Page from './components/page';
-import { useLocalization } from '~/common/components/localization';
+import Page from '~/pages/common/components/page';
+import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 import {
   socketAttachConnection,
   socketDetachConnection,
@@ -16,9 +16,15 @@ const urlInputStyle = {
   maxWidth: '300px',
 };
 
+const defaultMessage = `{
+  "age": 24,
+  "sex": "male"
+}`;
+
 const SocketExample = () => {
   const dispatch = useDispatch();
   const [url, setUrl] = useState(DEFAULT_SOCKET_URL);
+  const [payload, setPayload] = useState(defaultMessage);
   const handleUrlChange = useCallback((event) => setUrl(event.target.value), [setUrl]);
   const handleSocketConnect = useCallback(() => dispatch(socketAttachConnection(url)), [
     url,
@@ -26,16 +32,14 @@ const SocketExample = () => {
   ]);
   const handleSocketDisconnect = useCallback(() => dispatch(socketDetachConnection()), [dispatch]);
   const handleSocketEmit = useCallback(
-    () =>
-      dispatch(
-        socketEmitMesage('TestSocketMessage', {
-          age: 24,
-          sex: 'male',
-        }),
-      ),
-    [dispatch],
+    () => dispatch(socketEmitMesage('TestSocketMessage', JSON.parse(payload))),
+    [dispatch, payload],
   );
-  const dictionary = useLocalization();
+  const handlePayloadChange = useCallback(({ target: { value } }) => setPayload(value), [
+    setPayload,
+  ]);
+
+  const dictionary = useDictionary();
 
   return (
     <Page title={dictionary.get('page.socket-example')}>
@@ -52,16 +56,18 @@ const SocketExample = () => {
           />
 
           <div>
-            <Button className="mr-2 mb-2" color="light" outline onClick={handleSocketConnect}>
+            <Button className="mr-2 mb-2" color="primary" onClick={handleSocketConnect}>
               Connect
             </Button>
-            <Button className="mr-2 mb-2" color="light" outline onClick={handleSocketDisconnect}>
+            <Button className="mr-2 mb-2" color="primary" onClick={handleSocketDisconnect}>
               Disconnect
             </Button>
-            <Button className="mr-2 mb-2" color="light" outline onClick={handleSocketEmit}>
+            <Button className="mr-2 mb-2" color="primary" onClick={handleSocketEmit}>
               Emit
             </Button>
           </div>
+
+          <Input type="textarea" value={payload} onChange={handlePayloadChange} />
         </div>
       </div>
     </Page>

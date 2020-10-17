@@ -1,6 +1,15 @@
 import { createSelector } from 'reselect';
 import { propOr, prop } from 'ramda';
 
-const getModals = prop('modal');
+const modalProp = prop('modal');
+const propOrEmptyObject = propOr({});
 
-export const getModal = (type) => createSelector(getModals, propOr({}, type));
+const getModalType = (_, { modal: { type } }) => type;
+
+export const getModal = createSelector(modalProp, getModalType, (modals, modalType) =>
+  propOrEmptyObject(modalType, modals),
+);
+
+export const getModalIsOpen = createSelector(getModal, propOr(false, 'isOpen'));
+
+export const getModalParams = createSelector(getModal, propOrEmptyObject('params'));

@@ -1,6 +1,6 @@
 import { sleep } from '../async';
 
-describe('async', () => {
+describe('async utils', () => {
   it('should sleep for a valid amount of time', (exit) => {
     const start = new Date().getTime();
 

@@ -21,10 +21,6 @@
         "ramda": {
           "transform": "ramda/src/${member}",
           "preventFullImport": true
-        },
-        "reactstrap": {
-          "transform": "reactstrap/es/${member}",
-          "preventFullImport": true
         }
       }
     ],

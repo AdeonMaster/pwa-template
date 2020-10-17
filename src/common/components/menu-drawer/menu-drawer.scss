@@ -32,6 +32,27 @@
     transform: translate(-100%, 0);
 
     transition: transform 0.15s ease-out;
+
+    &.align-right {
+      right: 0;
+      transform: translate(100%, 0);
+    }
+
+    &.align-top {
+      height: 250px;
+      width: 100%;
+
+      transform: translate(0, -100%);
+    }
+
+    &.align-bottom {
+      height: 250px;
+      width: 100%;
+      top: auto;
+      bottom: 0;
+
+      transform: translate(0, 100%);
+    }
   }
 
   &.shown {
@@ -52,7 +73,7 @@
 }
 
 body {
-  &.drawer-menu-open {
+  &.drawer-menu-shown {
     overflow: hidden;
   }
 }

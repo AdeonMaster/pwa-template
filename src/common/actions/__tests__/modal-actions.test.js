@@ -29,7 +29,7 @@ describe('modal-actions', () => {
     });
   });
 
-  it('openedModal', () => {
+  it('modalOpened', () => {
     expect(modalOpened('TEST_USER')).toEqual({
       type: MODAL.OPENED,
       payload: {
@@ -38,7 +38,7 @@ describe('modal-actions', () => {
     });
   });
 
-  it('closedModal', () => {
+  it('modalClosed', () => {
     expect(modalClosed('TEST_USER')).toEqual({
       type: MODAL.CLOSED,
       payload: {

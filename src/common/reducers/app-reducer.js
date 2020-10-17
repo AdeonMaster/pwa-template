@@ -42,6 +42,11 @@ const toggleMenu = (state, { payload: { isMenuOpen } }) => ({
   isMenuOpen,
 });
 
+const toggleDarkMode = (state, { payload: { isDarkMode } }) => ({
+  ...state,
+  isDarkMode,
+});
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case APP.INIT_SUCCESS:
@@ -55,6 +60,9 @@ export default (state = initialState, action) => {
 
     case APP.TOGGLE_MENU:
       return toggleMenu(state, action);
+
+    case APP.TOGGLE_DARK_MODE:
+      return toggleDarkMode(state, action);
 
     default:
       return state;

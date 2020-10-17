@@ -1,9 +1,19 @@
-import { all, put, delay, takeEvery, select } from 'redux-saga/effects';
+import { all, put, takeEvery, call, select } from 'redux-saga/effects';
+import { values } from 'ramda';
 
-import { APP_ID } from '../constants';
+import { APP_ID, LANG } from '../constants';
+import { callWithTimeframeDelay } from '~/common/utils/saga';
 import APP from '~/common/types/app-types';
 import { initSuccess, toggleMenu } from '~/common/actions/app-actions';
 import { getVersion, getIsMenuOpen } from '~/common/selectors/app-selectors';
+
+import { loadAllLocalizationSaga } from '~/@adeon/localization/saga/localization-saga';
+
+export const MAX_APP_INIT_DELAY = 300;
+
+export function* bootstrapSaga() {
+  yield loadAllLocalizationSaga(values(LANG));
+}
 
 export function* initSaga() {
   const version = yield select(getVersion);
@@ -11,7 +21,7 @@ export function* initSaga() {
   // eslint-disable-next-line no-console
   console.log(`${APP_ID}: version ${version}`);
 
-  yield delay(300);
+  yield call(callWithTimeframeDelay, MAX_APP_INIT_DELAY, bootstrapSaga);
 
   // remove body loading class
   document.body.className = '';

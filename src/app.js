@@ -2,43 +2,31 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS
 
-import { LocalizationProvider, buildDictionaries } from '~/common/components/localization';
 import SplashScreen from '~/common/components/splash-screen';
 import ErrorBoundary from '~/common/components/error-boundary';
 import ScrollContext from '~/common/components/scroll-context';
 import LocationListener from '~/common/components/location-listener';
 
-import SideMenu from '~/pages/components/side-menu';
+import SideMenu from '~/pages/common/components/side-menu';
 import Home from '~/pages/home';
 import SocketExample from '~/pages/socket-example';
 import ModalExample from '~/pages/modal-example';
+import FormExample from '~/pages/form-example';
+import PushNotificationExample from '~/pages/push-notification-example';
 import NotFound from '~/pages/not-found';
+import PreferencesModal from '~/modals/preferences-modal';
 
-import { LANG } from '~/common/constants';
-import { getLang, getIsLoading } from '~/common/selectors/app-selectors';
+import { getIsLoading } from '~/common/selectors/app-selectors';
 import { init } from '~/common/actions/app-actions';
 
-import enDictionaryContent from '~/locale/en.locale';
-import deDictionaryContent from '~/locale/de.locale';
-import frDictionaryContent from '~/locale/fr.locale';
-import ruDictionaryContent from '~/locale/ru.locale';
 import useShallowEqualSelector from './common/hooks/use-shallow-equal-selector';
 
-// Tell Font Awesome to skip adding the CSS automatically since it's being imported above
+// Tell Font Awesome to skip adding the CSS automatically since it's being imported inside styles
 config.autoAddCss = false;
-
-const dictionaries = buildDictionaries({
-  [LANG.EN]: enDictionaryContent,
-  [LANG.DE]: deDictionaryContent,
-  [LANG.FR]: frDictionaryContent,
-  [LANG.RU]: ruDictionaryContent,
-});
 
 const App = () => {
   const dispatch = useDispatch();
-  const lang = useShallowEqualSelector(getLang);
   const isLoading = useShallowEqualSelector(getIsLoading);
 
   useEffect(() => {
@@ -47,25 +35,30 @@ const App = () => {
 
   return (
     <ErrorBoundary>
-      <LocalizationProvider lang={lang} dictionaries={dictionaries}>
-        {isLoading ? (
-          <SplashScreen />
-        ) : (
-          <BrowserRouter>
-            <LocationListener>
-              <SideMenu />
-              <ScrollContext>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/socket-example" component={SocketExample} />
-                  <Route exact path="/modal-example" component={ModalExample} />
-                  <Route component={NotFound} />
-                </Switch>
-              </ScrollContext>
-            </LocationListener>
-          </BrowserRouter>
-        )}
-      </LocalizationProvider>
+      {isLoading ? (
+        <SplashScreen />
+      ) : (
+        <BrowserRouter>
+          <LocationListener>
+            <SideMenu />
+            <ScrollContext>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/socket-example" component={SocketExample} />
+                <Route exact path="/modal-example" component={ModalExample} />
+                <Route exact path="/form-example" component={FormExample} />
+                <Route
+                  exact
+                  path="/push-notification-example"
+                  component={PushNotificationExample}
+                />
+                <Route component={NotFound} />
+              </Switch>
+            </ScrollContext>
+            <PreferencesModal />
+          </LocationListener>
+        </BrowserRouter>
+      )}
     </ErrorBoundary>
   );
 };
