@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Form as ReactstrapForm } from 'reactstrap';
 import { useForm, FormProvider } from 'react-hook-form';
 
-const Form = ({ onSubmit, className, children }) => {
-  const formMethods = useForm();
+const Form = ({ onSubmit, defaultValues, className, children }) => {
+  const formMethods = useForm({ defaultValues });
 
   const { handleSubmit } = formMethods;
 
@@ -21,8 +21,13 @@ const Form = ({ onSubmit, className, children }) => {
 
 Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  defaultValues: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+};
+
+Form.defaultProps = {
+  defaultValues: {},
 };
 
 export default Form;

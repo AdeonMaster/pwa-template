@@ -7,6 +7,10 @@ import Field from '~/pages/common/components/field';
 import Form from '~/pages/common/components/form';
 import { isNumber } from '~/common/utils/number';
 
+const defaultValues = {
+  name: 'Alex',
+};
+
 const FormExample = () => {
   const dictionary = useDictionary();
 
@@ -20,7 +24,7 @@ const FormExample = () => {
       <div className="container">
         <h5 className="text-center mb-4">{dictionary.get('page.form-example')}</h5>
 
-        <Form onSubmit={handleFormSubmit}>
+        <Form onSubmit={handleFormSubmit} defaultValues={defaultValues}>
           <FormGroup>
             <Label for="name">Name</Label>
             <Field
@@ -33,10 +37,10 @@ const FormExample = () => {
           </FormGroup>
 
           <FormGroup>
-            <Label for="number">Number</Label>
+            <Label for="age">Number</Label>
             <Field
               type="text"
-              name="number"
+              name="age"
               rules={{
                 required: true,
                 validate: (value) => isNumber(value) || 'Is not a valid number!',
