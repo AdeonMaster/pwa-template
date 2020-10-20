@@ -6,7 +6,11 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 const rootClassName = 'btn';
 
 const PreferencesMenuButton = ({ className, onClick }) => (
-  <button className={className ? `${rootClassName} ${className}` : rootClassName} onClick={onClick}>
+  <button
+    className={className ? `${rootClassName} ${className}` : rootClassName}
+    onClick={onClick}
+    aria-label="Preferences button"
+  >
     <FontAwesomeIcon icon={faCog} />
   </button>
 );

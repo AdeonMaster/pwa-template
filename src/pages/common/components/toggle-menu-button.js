@@ -6,7 +6,11 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const rootClassName = 'btn';
 
 const ToggleMenuItem = ({ className, onClick }) => (
-  <button className={className ? `${rootClassName} ${className}` : rootClassName} onClick={onClick}>
+  <button
+    className={className ? `${rootClassName} ${className}` : rootClassName}
+    onClick={onClick}
+    aria-label="Toggle menu button"
+  >
     <FontAwesomeIcon icon={faBars} />
   </button>
 );
