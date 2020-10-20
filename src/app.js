@@ -16,6 +16,7 @@ import FormExample from '~/pages/form-example';
 import PushNotificationExample from '~/pages/push-notification-example';
 import NotFound from '~/pages/not-found';
 import PreferencesModal from '~/modals/preferences-modal';
+import NewVersionModal from '~/modals/new-version-modal';
 
 import { getIsLoading } from '~/common/selectors/app-selectors';
 import { init } from '~/common/actions/app-actions';
@@ -56,6 +57,7 @@ const App = () => {
               </Switch>
             </ScrollContext>
             <PreferencesModal />
+            <NewVersionModal />
           </LocationListener>
         </BrowserRouter>
       )}

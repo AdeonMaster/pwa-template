@@ -13,6 +13,11 @@
   "language": "Language",
   "preferences": "Preferences",
   "notifications": "Notifications",
+  "refresh": "Refresh",
+  "later": "Later",
+
+  "modal.new-version.header": "New update is available",
+  "modal.new-version.body": "New update is available. Reload the app to see the latest juicy changes!",
 
   "preferences.language": "Language",
   "preferences.theme": "Theme",

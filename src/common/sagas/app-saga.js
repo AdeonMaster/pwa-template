@@ -1,10 +1,11 @@
 import { all, put, takeEvery, call, select } from 'redux-saga/effects';
 import { values } from 'ramda';
 
-import { APP_ID, LANG } from '../constants';
+import { APP_ID, LANG, MODAL } from '~/common/constants';
 import { callWithTimeframeDelay } from '~/common/utils/saga';
 import APP from '~/common/types/app-types';
 import { initSuccess, toggleMenu } from '~/common/actions/app-actions';
+import { openModal } from '~/common/actions/modal-actions';
 import { getVersion, getIsMenuOpen } from '~/common/selectors/app-selectors';
 
 import { loadAllLocalizationSaga } from '~/@adeon/localization/saga/localization-saga';
@@ -37,6 +38,14 @@ export function* locationChangeSaga() {
   }
 }
 
+export function* serviceWorkerUpdatedSaga() {
+  yield put(openModal(MODAL.NEW_VERSION));
+}
+
 export default function* appRootSaga() {
-  yield all([takeEvery(APP.INIT, initSaga), takeEvery(APP.LOCATION_CHANGE, locationChangeSaga)]);
+  yield all([
+    takeEvery(APP.INIT, initSaga),
+    takeEvery(APP.LOCATION_CHANGE, locationChangeSaga),
+    takeEvery('sw/updated', serviceWorkerUpdatedSaga),
+  ]);
 }

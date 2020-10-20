@@ -13,6 +13,11 @@
   "language": "Язык",
   "preferences": "Настройки",
   "notifications": "Уведомления",
+  "refresh": "Обновить",
+  "later": "Позже",
+
+  "modal.new-version.header": "Новая версия доступна",
+  "modal.new-version.body": "Новая версия уже доступна. Обновите страницу, чтобы новые изменения вступили в силу!",
 
   "preferences.language": "Язык",
   "preferences.theme": "Тема",

@@ -1,5 +1,3 @@
-import { find, propEq } from 'ramda';
-
 import { APP_ID } from '~/common/constants';
 import NamespacedLocalStorage from '~/common/utils/namespaced-local-storage';
 
@@ -23,22 +21,10 @@ export const isCookieEnabled = () => {
 
 export const getBrowserLang = () => window.navigator.language || window.navigator.userLanguage;
 
-export const switchTheme = (themeName) => {
-  const theme = find(propEq('name', themeName), window.bootstrapThemes || []);
+export const setFavicon = (url) => {
+  const node = document.querySelector('link[type="image/x-icon"]');
 
-  if (!theme) {
-    // eslint-disable-next-line no-console
-    console.warn(`Can't find theme with name "${themeName}"`);
-    return false;
+  if (node) {
+    node.href = `${window.location.origin}${url}`;
   }
-
-  const stylesheetLinkNode = document.querySelector('link#theme');
-  if (!stylesheetLinkNode) {
-    // eslint-disable-next-line no-console
-    console.warn(`Can't find valid stylesheet node to apply new theme`);
-    return false;
-  }
-
-  stylesheetLinkNode.href = theme.entryKey;
-  return true;
 };

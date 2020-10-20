@@ -32,7 +32,28 @@ sagaMiddleware.run(rootSaga);
 
 // service-worker
 OfflinePluginRuntime.install({
-  onUpdateReady: () => OfflinePluginRuntime.applyUpdate(),
+  onInstalled: () => {
+    store.dispatch({
+      type: 'sw/installed',
+    });
+  },
+  onUpdating: () => {
+    store.dispatch({
+      type: 'sw/updating',
+    });
+  },
+  onUpdateReady: () => {
+    store.dispatch({
+      type: 'sw/update-ready',
+    });
+    OfflinePluginRuntime.applyUpdate();
+  },
+  onUpdated: () => {
+    store.dispatch({
+      type: 'sw/updated',
+    });
+    // window.location.reload();
+  },
 });
 
 if (process.env.NODE_ENV === 'development') {
