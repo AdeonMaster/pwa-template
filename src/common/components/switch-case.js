@@ -9,14 +9,14 @@ const ERROR_MULTIPLE_DEFAULT_CASES_FOUND = 'Error: Multiple default cases found'
 const ERROR_NOT_A_VALID_NODE = "Error: Non case component won't be rendered";
 const ERROR_DEFAULT_CASE_NOT_FOUND = 'Error: Default case is not found';
 
-export const Switch = ({ condition, children }) => {
+const Switch = ({ condition, children }) => {
   /* eslint-disable-next-line sonarjs/cognitive-complexity */
   return useMemo(() => {
     const cases = {};
     let defaultCase = null;
 
     Children.forEach(children, (item) => {
-      switch (item.type.name) {
+      switch (item.type.displayName) {
         case CASE_COMPONENT: {
           const { value } = item.props;
 
@@ -61,6 +61,12 @@ export const Switch = ({ condition, children }) => {
   }, [children, condition]);
 };
 
-export const Case = ({ children }) => children;
+const Case = ({ children }) => children;
 
-export const Default = ({ children }) => children;
+const Default = ({ children }) => children;
+
+Switch.displayName = 'Switch';
+Case.displayName = 'Case';
+Default.displayName = 'Default';
+
+export { Switch, Case, Default };

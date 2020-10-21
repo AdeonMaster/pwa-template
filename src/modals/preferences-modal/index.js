@@ -23,7 +23,7 @@ const TAB = {
 const PreferencesModal = () => {
   const { isOpen, toggle, onOpened, onClosed } = useModal(MODAL.PREFERENCES);
   const dictionary = useDictionary();
-  const [tab, setTab] = useState('language');
+  const [tab, setTab] = useState(TAB.LANGUAGE);
 
   const handleTabChange = useCallback((tab) => () => setTab(tab), [setTab]);
 
