@@ -6,6 +6,6 @@ describe('number utils', () => {
   });
 
   it('should return false for invalid numbers', () => {
-    expect(isNumber('test')).toBe(true);
+    expect(isNumber('test')).toBe(false);
   });
 });
