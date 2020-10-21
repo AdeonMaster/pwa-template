@@ -70,7 +70,16 @@ const buildReduxAction = (socketEvent, data) => {
 
 const handleSocketEvent = (connectionHandle, emitReduxAction) => (socketEvent) =>
   connectionHandle.on(socketEvent, (data) => {
-    emitReduxAction(buildReduxAction(socketEvent, data));
+    const url = connectionHandle.io.uri;
+
+    emitReduxAction({
+      ...buildReduxAction(socketEvent, data),
+      meta: {
+        socket: {
+          url,
+        },
+      },
+    });
   });
 
 const createSocketListenChannel = (connectionHandle) =>

@@ -1,6 +1,6 @@
 {
   "page.home": "Главная",
-  "page.socket-example": "Socket соединение",
+  "page.socket-example": "Пример socket соединения",
   "page.modal-example": "Пример модального окно",
   "page.form-example": "Пример формы",
   "page.push-notification-example": "Пример Push уведомлений",

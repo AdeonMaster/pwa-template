@@ -10,7 +10,6 @@ const {
   copyWebpackPlugin,
   offlinePlugin,
   wrapperPlugin,
-  staticRouteGeneratorWebpackPlugin,
   jsonMinifyWebpackPlugin
 } = require('./plugins');
 
@@ -52,9 +51,8 @@ module.exports = () => ({
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    offlinePlugin,
+    offlinePlugin(mode),
     wrapperPlugin,
-    staticRouteGeneratorWebpackPlugin,
     jsonMinifyWebpackPlugin
   ],
   module: {
