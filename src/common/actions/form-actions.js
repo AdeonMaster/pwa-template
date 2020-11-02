@@ -1,6 +1,7 @@
+import { EMPTY_STRING } from '~/common/constants';
 import FORM from '~/common/types/form-types';
 
-export const setFormSuccess = (type, message = '') => ({
+export const setFormSuccess = (type, message = EMPTY_STRING) => ({
   type: FORM.SET_SUCCESS,
   payload: {
     type,
@@ -8,7 +9,7 @@ export const setFormSuccess = (type, message = '') => ({
   },
 });
 
-export const setFormFailure = (type, message = '') => ({
+export const setFormFailure = (type, message = EMPTY_STRING) => ({
   type: FORM.SET_FAILURE,
   payload: {
     type,

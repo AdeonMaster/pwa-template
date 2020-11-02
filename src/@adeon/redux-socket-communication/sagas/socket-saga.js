@@ -3,6 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { forEachObjIndexed } from 'ramda';
 import openSocket from 'socket.io-client';
 
+import { EMPTY_OBJECT } from '~/common/constants';
 import {
   SOCKET_EVENT,
   EXCLUDED_SOCKET_ACTIONS,
@@ -12,7 +13,7 @@ import wildcardActionChannel from '../effects/wildcard-action-channel';
 
 const socketEmitMessagePattern = /socket\/emit\/(.+)/;
 
-const createSocketConnection = (url, params = {}) =>
+const createSocketConnection = (url, params = EMPTY_OBJECT) =>
   openSocket(url, {
     ...DEFAULT_SOCKET_CONNECTION_PARAMS,
     ...params,

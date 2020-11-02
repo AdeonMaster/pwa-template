@@ -1,5 +1,19 @@
-import { APP_ID } from '~/common/constants';
+import { propOr, pathOr } from 'ramda';
+
+import { APP_ID, BOOLEAN, EMPTY_ARRAY, EMPTY_OBJECT, EMPTY_STRING } from '~/common/constants';
 import NamespacedLocalStorage from '~/common/utils/namespaced-local-storage';
+
+export const propOrEmptyString = propOr(EMPTY_STRING);
+export const propOrEmptyObject = propOr(EMPTY_OBJECT);
+export const propOrEmptyArray = propOr(EMPTY_ARRAY);
+export const propOrFalse = propOr(BOOLEAN.FALSE);
+export const propOrTrue = propOr(BOOLEAN.TRUE);
+
+export const pathOrEmptyString = pathOr(EMPTY_STRING);
+export const pathOrEmptyObject = pathOr(EMPTY_OBJECT);
+export const pathOrEmptyArray = pathOr(EMPTY_ARRAY);
+export const pathOrFalse = pathOr(BOOLEAN.FALSE);
+export const pathOrTrue = pathOr(BOOLEAN.TRUE);
 
 export const namespacedLocalStorage = new NamespacedLocalStorage(APP_ID);
 

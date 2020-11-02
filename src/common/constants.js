@@ -21,3 +21,11 @@ export const FORM_STATE = {
   SUCCESS: 'success',
   FAILURE: 'failure',
 };
+
+export const BOOLEAN = {
+  TRUE: true,
+  FALSE: false,
+};
+export const EMPTY_ARRAY = [];
+export const EMPTY_OBJECT = {};
+export const EMPTY_STRING = '';

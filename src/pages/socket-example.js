@@ -7,13 +7,14 @@ import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
 import {
   socketAttachConnection,
   socketDetachConnection,
-  socketEmitMesage,
+  socketEmitMessage,
 } from '~/@adeon/redux-socket-communication/actions/socket-actions';
 import { getConnectionStatus } from '~/@adeon/redux-socket-communication/selectors/connection-selectors';
 
 const DEFAULT_SOCKET_URL = 'https://localhost:8080';
 
-const defaultMessage = `{
+const defaultMessageName = 'ExampleSocketMessage';
+const defaultMessagePayload = `{
   "age": 24,
   "sex": "male"
 }`;
@@ -25,7 +26,8 @@ const textareaStyle = {
 const SocketExample = () => {
   const dispatch = useDispatch();
   const [url, setUrl] = useState(DEFAULT_SOCKET_URL);
-  const [payload, setPayload] = useState(defaultMessage);
+  const [messageName, setMessageName] = useState(defaultMessageName);
+  const [messagePayload, setMessagePayload] = useState(defaultMessagePayload);
   const handleUrlChange = useCallback((event) => setUrl(event.target.value), [setUrl]);
   const handleSocketConnect = useCallback(() => dispatch(socketAttachConnection(url)), [
     url,
@@ -33,12 +35,16 @@ const SocketExample = () => {
   ]);
   const handleSocketDisconnect = useCallback(() => dispatch(socketDetachConnection()), [dispatch]);
   const handleSocketEmit = useCallback(
-    () => dispatch(socketEmitMesage('TestSocketMessage', JSON.parse(payload))),
-    [dispatch, payload],
+    () => dispatch(socketEmitMessage(messageName, JSON.parse(messagePayload))),
+    [dispatch, messageName, messagePayload],
   );
-  const handlePayloadChange = useCallback(({ target: { value } }) => setPayload(value), [
-    setPayload,
+  const handleMessageNameChange = useCallback(({ target: { value } }) => setMessageName(value), [
+    setMessageName,
   ]);
+  const handleMessagePayloadChange = useCallback(
+    ({ target: { value } }) => setMessagePayload(value),
+    [setMessagePayload],
+  );
 
   const dictionary = useDictionary();
   const connectionStatus = useSelector(getConnectionStatus);
@@ -86,10 +92,20 @@ const SocketExample = () => {
 
         <FormGroup>
           <Input
+            type="text"
+            value={messageName}
+            onChange={handleMessageNameChange}
+            disabled={disabled}
+          />
+          <FormText>Socket message name</FormText>
+        </FormGroup>
+
+        <FormGroup>
+          <Input
             style={textareaStyle}
             type="textarea"
-            value={payload}
-            onChange={handlePayloadChange}
+            value={messagePayload}
+            onChange={handleMessagePayloadChange}
             disabled={disabled}
           />
           <FormText>Socket message payload</FormText>

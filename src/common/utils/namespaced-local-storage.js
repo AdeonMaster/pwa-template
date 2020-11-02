@@ -1,5 +1,7 @@
+import { EMPTY_STRING } from '~/common/constants';
+
 export default class NamespacedLocalStorage {
-  constructor(namespace = '') {
+  constructor(namespace = EMPTY_STRING) {
     this.namespace = namespace;
   }
 

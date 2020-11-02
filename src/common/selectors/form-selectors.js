@@ -1,13 +1,13 @@
-import { prop, propOr } from 'ramda';
+import { prop } from 'ramda';
 import { createSelector } from 'reselect';
 
-const formProp = prop('form');
-const propOrEmptyString = propOr('');
+import { propOrEmptyString, propOrEmptyObject } from '~/common/utils';
 
+const formProp = prop('form');
 const getFormType = (_, { form: { type } }) => type;
 
 export const getForm = createSelector(formProp, getFormType, (forms, formType) =>
-  propOr({}, formType, forms),
+  propOrEmptyObject(formType, forms),
 );
 
 export const getFormState = createSelector(getForm, propOrEmptyString('state'));

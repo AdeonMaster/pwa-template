@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import classnames from '~/common/utils/classnames';
 import './menu-drawer.scss';
 
 const MenuDrawer = ({ isOpen, toggle, align, children, className }) => {
-  const rootClassName = classnames(['drawer-menu right', isOpen && 'shown']);
-
-  const sideClassName = classnames(['drawer-menu-side', `align-${align}`, className]);
+  const rootClassName = useMemo(() => classnames(['drawer-menu right', isOpen && 'shown']), [
+    isOpen,
+  ]);
+  const sideClassName = useMemo(
+    () => classnames(['drawer-menu-side', `align-${align}`, className]),
+    [align, className],
+  );
 
   useEffect(() => {
     document.body.classList.toggle('drawer-menu-shown', isOpen);

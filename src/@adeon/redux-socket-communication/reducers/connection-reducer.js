@@ -1,4 +1,6 @@
-const initialState = {};
+import { EMPTY_OBJECT } from '~/common/constants';
+
+export const initialState = EMPTY_OBJECT;
 
 const connect = (state, { url }) => ({
   ...state,

@@ -13,9 +13,13 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - [How to set up Chrome remote device debugging](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/local-server)
 - [SSL certificate installation detailed guide for Android device](https://michielsioen.be/2019-11-23-the-pwa-experiment-pt2-debugging/)
 
-chrome://inspect/#devices
-## Chrome remote devices port forwarding
-8080 localhost:8080
+## Chrome remote devices port forwarding settings
+
+Port forwarding settings could be found at [chrome://inspect/#devices](chrome://inspect/#devices)
+
+| Port | IP Address and port |
+| ------------- | ------------- |
+| 8080 | localhost:8080 |
 
 # SSL certificate installation detailed guide for Windows
 - Navigate to `server/certificate` folder inside app working directory
@@ -44,11 +48,14 @@ chrome://inspect/#devices
 - Optimize newly added deps with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
 
 # TO DO
-- Add socket connection status & custom message payload
-- Add notification preferences logic
-- Inject custom ServiceWorker code by `ServiceWorker.entry` option
-- Add custom error logging service
+- Enhancement: Add socket connection status & custom message payload
+- Roadmap: Add notification preferences logic
+- Enhancement: Inject custom ServiceWorker code by `ServiceWorker.entry` option (Does)
+- Enhancement: Add custom error logging service
+- Roadmap: Replace OfflinePlugin with it's successor (Workbox?)
+- Roadmap: Migrate to Webpack 5
 
 # Issues
 - Server: Requesting a non static asset file cause to return index.html document instead of 404 error
 - App: offline-plugin isn't unregistering service worker if app is running in DEV mode after PROD 
+- Environment: Jest coverage isn't working properly for pages folder

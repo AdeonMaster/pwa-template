@@ -1,7 +1,7 @@
 import { all, call } from 'redux-saga/effects';
 
 import { globalWindowPath } from '../constants';
-import { getLocalizationFileRequest } from '../utils';
+import { getLocalizationFileRequest } from '../requests';
 
 export function* loadLocalizationSaga(lang) {
   const [response, error] = yield call(getLocalizationFileRequest, lang);

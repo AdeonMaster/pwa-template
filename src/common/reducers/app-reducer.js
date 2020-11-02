@@ -1,16 +1,8 @@
 import APP from '~/common/types/app-types';
-import { LANG } from '~/common/constants';
-import { namespacedLocalStorage, getBrowserLang } from '~/common/utils';
+import { namespacedLocalStorage } from '~/common/utils';
 
 export const initialState = {
   version: process.env.PACKAGE_VERSION,
-  isLoading: true,
-  error: '',
-  isMenuOpen: false,
-  lang:
-    namespacedLocalStorage.getItem('lang') ||
-    LANG[(getBrowserLang() || '').split('-')[1]] ||
-    LANG.EN, // TO DO: move it to a selector
 };
 
 const initSuccess = (state) => ({

@@ -9,8 +9,7 @@ import { call, delay } from 'redux-saga/effects';
  * @return {string} A good string
  *
  * @example
- *
- *     yield call(callWithTimeframeDelay, 2000, exampleSaga, 'test');
+ * yield call(callWithTimeframeDelay, 2000, exampleSaga, 'test');
  */
 export function* callWithTimeframeDelay(ms, saga, ...params) {
   const sagaStartTime = Date.now();
