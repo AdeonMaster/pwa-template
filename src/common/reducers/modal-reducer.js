@@ -4,13 +4,16 @@ import MODAL from '~/common/types/modal-types';
 
 export const initialState = {};
 
-const open = (state, { payload: { type, params } }) => ({
-  ...state,
-  [type]: {
-    isOpen: true,
-    params,
-  },
-});
+const open = (state, { payload: { type, params } }) =>
+  type
+    ? {
+        ...state,
+        [type]: {
+          isOpen: true,
+          params,
+        },
+      }
+    : state;
 
 const close = (state, { payload: { type } }) => ({
   ...state,

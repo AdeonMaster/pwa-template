@@ -1,7 +1,6 @@
-import { EMPTY_STRING } from '~/common/constants';
 import MODAL from '~/common/types/modal-types';
 
-export const openModal = (type = EMPTY_STRING, params = {}) => ({
+export const openModal = (type, params = {}) => ({
   type: MODAL.OPEN,
   payload: {
     type,
