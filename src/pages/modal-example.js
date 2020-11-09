@@ -8,18 +8,24 @@ import ExampleModal from '~/modals/example-modal';
 import { openModal } from '~/common/actions/modal-actions';
 import { MODAL } from '~/common/constants';
 
+const modalParams = {
+  body: 'Example body content',
+};
+
 const ModalExample = () => {
   const dispatch = useDispatch();
   const dictionary = useDictionary();
 
-  const handleModalOpen = useCallback((type) => () => dispatch(openModal(type)), [dispatch]);
+  const handleClick = useCallback(() => dispatch(openModal(MODAL.EXAMPLE, modalParams)), [
+    dispatch,
+  ]);
 
   return (
     <Page title={dictionary.get('page.modal-example')}>
       <div className="container">
         <h5 className="text-center mb-4">{dictionary.get('page.modal-example')}</h5>
 
-        <Button color="primary" onClick={handleModalOpen(MODAL.EXAMPLE)}>
+        <Button color="primary" onClick={handleClick}>
           Open example modal
         </Button>
 

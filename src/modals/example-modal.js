@@ -5,12 +5,12 @@ import useModal from '~/common/hooks/use-modal';
 import { MODAL } from '~/common/constants';
 
 const ExampleModal = () => {
-  const { isOpen, toggle, onOpened, onClosed } = useModal(MODAL.EXAMPLE);
+  const { isOpen, toggle, params, onOpened, onClosed } = useModal(MODAL.EXAMPLE);
 
   return (
     <Modal isOpen={isOpen} toggle={toggle} onOpened={onOpened} onClosed={onClosed} size="lg">
       <ModalHeader toggle={toggle}>Header</ModalHeader>
-      <ModalBody>Body text</ModalBody>
+      <ModalBody>{params.body}</ModalBody>
       <ModalFooter>
         <Button color="primary" size="sm" onClick={toggle}>
           Ok
