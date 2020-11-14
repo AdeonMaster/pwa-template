@@ -32,6 +32,13 @@ const postCssLoaderConfig = {
   }
 };
 
+const urlLoaderConfig = {
+  loader: 'url-loader',
+  options: {
+    limit: 8192
+  }
+};
+
 const jsRules = {
   test: /\.js?/,
   include: path.resolve(__dirname, '../../src'),
@@ -103,7 +110,9 @@ const scssModuleRules = {
 
 const otherRules = {
   test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-  loader: 'url-loader?limit=100000'
+  use: [
+    urlLoaderConfig
+  ],
 };
 
 module.exports = [

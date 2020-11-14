@@ -1,37 +1,42 @@
+const path = require('path');
+
 const rules = require('./rules');
 const {
   packageVersionPlugin,
   envPlugin,
   terserPlugin,
+  jsonMinimizerPlugin,
   cleanWebpackPlugin,
-  optimizeCssAssetsPlugin,
+  cssMinimizerPlugin,
   miniCssExtractPlugin,
   htmlWebpackPlugin,
   copyWebpackPlugin,
-  offlinePlugin,
-  wrapperPlugin,
-  jsonMinifyWebpackPlugin
+  workboxPlugin,
+  // wrapperPlugin,
 } = require('./plugins');
 
 const mode = 'production';
+
+process.traceDeprecation = true;
 
 console.log('Production build..');
 
 module.exports = () => ({
   mode,
-  entry: [
-    './src/index.js'
-  ],
+  entry: './src/index.js',
   output: {
+    path: path.resolve(__dirname, '../../dist'),
     filename: '[name].[contenthash].js',
     publicPath: '/'
   },
-  devtool: 'false',
+  devtool: 'source-map',
   optimization: {
     minimizer: [
-      terserPlugin
+      terserPlugin,
+      cssMinimizerPlugin,
+      jsonMinimizerPlugin
     ],
-    moduleIds: 'hashed',
+    moduleIds: 'deterministic',
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
@@ -47,13 +52,11 @@ module.exports = () => ({
     envPlugin(mode),
     packageVersionPlugin(),
     cleanWebpackPlugin,
-    optimizeCssAssetsPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    offlinePlugin(mode),
-    wrapperPlugin,
-    jsonMinifyWebpackPlugin
+    workboxPlugin,
+    // wrapperPlugin,
   ],
   module: {
     rules
