@@ -53,5 +53,4 @@ Port forwarding settings could be found at [chrome://inspect/#devices](chrome://
 
 # Issues
 - Server: Requesting a non static asset file cause to return index.html document instead of 404 error
-- App: offline-plugin isn't unregistering service worker if app is running in DEV mode after PROD 
 - Environment: WrapperPlugin isn't compatible with webpack 5
