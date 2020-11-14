@@ -82,12 +82,6 @@
 			if (window.navigator && window.navigator.serviceWorker) {
 				window.addEventListener('load', () => {
 					navigator.serviceWorker.register('/service-worker.js').then(registration => {
-						registration.addEventListener('updatefound', event => {
-							if (event.currentTarget.active) {
-								console.log('SW found update while active');
-							}
-						});
-
 						console.log('SW registered: ', registration);
 					}).catch(registrationError => {
 						console.log('SW registration failed: ', registrationError);

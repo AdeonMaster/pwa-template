@@ -47,7 +47,6 @@ Port forwarding settings could be found at [chrome://inspect/#devices](chrome://
 - Optimize newly added deps with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
 
 # TO DO
-- Roadmap: Add Workbox updated callback
 - Enhancement: Add socket connection status & custom message payload
 - Roadmap: Add notification preferences logic
 - Enhancement: Add custom error logging service
