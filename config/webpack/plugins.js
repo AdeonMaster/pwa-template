@@ -1,17 +1,17 @@
 const fs = require('fs');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 const WrapperPlugin = require('wrapper-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
+const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin');
 
 // const StaticRouteGeneratorWebpackPlugin = require('./custom-plugins/static-route-generator-webpack-plugin');
 // const BootstrapThemeGeneratorWebpackPlugin = require('./custom-plugins/bootstrap-theme-generator-webpack-plugin');
-const JSONMinifyWebpackPlugin = require('./custom-plugins/json-minify-webpack-plugin');
 
 const envPlugin = (mode = 'development') => new webpack.DefinePlugin({
   'process.env': {
@@ -33,14 +33,12 @@ const packageVersionPlugin = () => {
 module.exports = {
   packageVersionPlugin,
   envPlugin,
-  optimizeCssAssetsPlugin: new OptimizeCSSAssetsPlugin({}),
+  cssMinimizerPlugin: new CssMinimizerPlugin(),
   miniCssExtractPlugin: new MiniCssExtractPlugin({
-    filename: '[name].[hash].css'
+    filename: '[name].[contenthash].css'
   }),
   terserPlugin: new TerserPlugin({
-    cache: true,
     parallel: true,
-    sourceMap: true,
     extractComments: true
   }),
   cleanWebpackPlugin: new CleanWebpackPlugin({
@@ -49,7 +47,7 @@ module.exports = {
   htmlWebpackPlugin: new HtmlWebpackPlugin({
     template: 'src/template.html',
     scriptLoading: 'defer',
-    hash: true,
+    // hash: true,
     minify: {
       collapseWhitespace: true,
       removeComments: true,
@@ -66,17 +64,14 @@ module.exports = {
       { from: 'static' },
     ],
   }),
-  offlinePlugin: (mode) => new OfflinePlugin({
-    appShell: '/',
-    externals: [
-      '/'
-    ],
-    // 1 second vs 1 hour
-    autoUpdate: mode === 'development' ? 1000 : 1000 * 60 * 60,
-    ServiceWorker: {
-      events: true,
-    }
+  workboxPlugin: new WorkboxPlugin.GenerateSW({
+    // these options encourage the ServiceWorkers to get in there fast
+    // and not allow any straggling "old" SWs to hang around
+    clientsClaim: true,
+    skipWaiting: true,
+    swDest: 'sw.js'
   }),
+  jsonMinimizerPlugin: new JsonMinimizerPlugin(),
   wrapperPlugin: new WrapperPlugin({
     test: /\.js$/, // only wrap output of bundle files with '.js' extension 
     header: 'try {\n',
@@ -100,6 +95,5 @@ module.exports = {
   // bootstrapThemeGeneratorWebpackPlugin: new BootstrapThemeGeneratorWebpackPlugin({
   //   themesDir: 'src/common/scss/themes',
   //   defaultTheme: 'light-theme'
-  // }),
-  jsonMinifyWebpackPlugin: new JSONMinifyWebpackPlugin()
+  // })
 };

@@ -1,3 +1,5 @@
+const path = require('path');
+
 const rules = require('./rules');
 const {
   packageVersionPlugin,
@@ -5,13 +7,14 @@ const {
   miniCssExtractPlugin,
   htmlWebpackPlugin,
   copyWebpackPlugin,
-  wrapperPlugin,
+  // wrapperPlugin,
   cleanWebpackPlugin,
-  offlinePlugin,
-  jsonMinifyWebpackPlugin
+  workboxPlugin,
 } = require('./plugins');
 
 const mode = 'development';
+
+process.traceDeprecation = true;
 
 console.log('Development build..');
 
@@ -20,11 +23,12 @@ module.exports = () => ({
   devtool: 'source-map',
   entry: './src/index.js',
   output: {
+    path: path.resolve(__dirname, '../../dist'),
     filename: '[name].[contenthash].js',
     publicPath: '/'
   },
   optimization: {
-    moduleIds: 'hashed',
+    moduleIds: 'deterministic',
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
@@ -43,9 +47,8 @@ module.exports = () => ({
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    offlinePlugin(mode),
-    wrapperPlugin,
-    jsonMinifyWebpackPlugin
+    workboxPlugin,
+    // wrapperPlugin,
   ],
   module: {
     rules

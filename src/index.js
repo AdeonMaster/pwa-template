@@ -5,37 +5,27 @@ import 'raf';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import OfflinePluginRuntime from 'offline-plugin/runtime';
 
 import store from './store';
 import App from './app';
 import './common/scss/main.scss';
 
-// service-worker
-OfflinePluginRuntime.install({
-  onInstalled: () => {
-    store.dispatch({
-      type: 'sw/installed',
-    });
-  },
-  onUpdating: () => {
-    store.dispatch({
-      type: 'sw/updating',
-    });
-  },
-  onUpdateReady: () => {
-    store.dispatch({
-      type: 'sw/update-ready',
-    });
-    OfflinePluginRuntime.applyUpdate();
-  },
-  onUpdated: () => {
-    store.dispatch({
-      type: 'sw/updated',
-    });
-    // window.location.reload();
-  },
-});
+// call specific redux action on service worker updatefound event
+if (window?.navigator?.serviceWorker?.getRegistrations) {
+  window.navigator.serviceWorker.getRegistrations().then((registrations) => {
+    const [registration] = registrations;
+
+    if (registration) {
+      registration.addEventListener('updatefound', (event) => {
+        if (event.currentTarget.active) {
+          store.dispatch({
+            type: 'sw/updated',
+          });
+        }
+      });
+    }
+  });
+}
 
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line global-require
