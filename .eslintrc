@@ -1,9 +1,24 @@
 {
   "parser": "babel-eslint",
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb-base",
+    "plugin:ramda/recommended",
+    "plugin:prettier/recommended",
+    "plugin:sonarjs/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
   },
   "plugins": [
     "react",
@@ -29,23 +44,17 @@
     "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": "error"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "airbnb-base",
-    "plugin:ramda/recommended",
-    "plugin:prettier/recommended",
-    "plugin:sonarjs/recommended"
-  ],
-  "env": {
-    "jest": true,
-    "browser": true,
-    "node": true
-  },
   "settings": {
-    "import/resolver": "babel-plugin-root-import",
     "react": {
-      "version": "16.8.6"
+      "version": "detect"
+    },
+    "import/resolver": {
+      "alias-array": {
+        "map": [
+          ["~", "./src"]
+        ],
+        "extensions": [".ts", ".js", ".jsx", ".json"]
+      }
     }
   }
 }

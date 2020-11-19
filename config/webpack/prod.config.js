@@ -60,5 +60,10 @@ module.exports = () => ({
   ],
   module: {
     rules
+  },
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, '../../src/')
+    }
   }
 });
