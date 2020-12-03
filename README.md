@@ -42,14 +42,16 @@ Port forwarding settings could be found at [chrome://inspect/#devices](chrome://
 - [Redux Developer Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=ru) for Chrome browser
 - [Postman](https://www.postman.com/)
 
-# Recommendations
-- Keep deps "up to date"
-- Optimize newly added deps with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
+# Production Deployment Note
+DO NOT UPLOAD SOURCEMAPS (*.js.map) FILES!
 
-# TO DO
-- Enhancement: Add socket connection status & custom message payload
+# Recommendations
+- Keep project dependencies "up to date" (ncu -u)
+- Optimize newly added dependencies with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
+
+# To Do
 - Roadmap: Add notification preferences logic
-- Enhancement: Add custom error logging service
+- Enhancement: Add custom error logging service (Sentry.io?)
 
 # Issues
 - Server: Requesting a non static asset file cause to return index.html document instead of 404 error
