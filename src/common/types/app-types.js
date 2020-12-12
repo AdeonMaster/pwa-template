@@ -8,4 +8,5 @@ export default buildKeyMirrorEnum('APP', [
   'LOCATION_CHANGE',
   'TOGGLE_MENU',
   'TOGGLE_DARK_MODE',
+  'CRASH_ERROR',
 ]);

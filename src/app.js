@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
 import SplashScreen from '~/common/components/splash-screen';
-import ErrorBoundary from '~/common/components/error-boundary';
 import ScrollContext from '~/common/components/scroll-context';
 import LocationListener from '~/common/components/location-listener';
 
@@ -34,34 +33,27 @@ const App = () => {
     dispatch(init());
   }, [dispatch]);
 
-  return (
-    <ErrorBoundary>
-      {isLoading ? (
-        <SplashScreen />
-      ) : (
-        <BrowserRouter>
-          <LocationListener>
-            <SideMenu />
-            <ScrollContext>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/socket-example" component={SocketExample} />
-                <Route exact path="/modal-example" component={ModalExample} />
-                <Route exact path="/form-example" component={FormExample} />
-                <Route
-                  exact
-                  path="/push-notification-example"
-                  component={PushNotificationExample}
-                />
-                <Route component={NotFound} />
-              </Switch>
-            </ScrollContext>
-            <PreferencesModal />
-            <NewVersionModal />
-          </LocationListener>
-        </BrowserRouter>
-      )}
-    </ErrorBoundary>
+  return isLoading ? (
+    <SplashScreen />
+  ) : (
+    <BrowserRouter>
+      <LocationListener>
+        <SideMenu />
+        <ScrollContext>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/socket-example" component={SocketExample} />
+            <Route exact path="/modal-example" component={ModalExample} />
+            <Route exact path="/form-example" component={FormExample} />
+            <Route exact path="/push-notification-example" component={PushNotificationExample} />
+            <Route component={NotFound} />
+          </Switch>
+        </ScrollContext>
+
+        <PreferencesModal />
+        <NewVersionModal />
+      </LocationListener>
+    </BrowserRouter>
   );
 };
 

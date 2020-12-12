@@ -10,6 +10,7 @@ describe('app-types', () => {
       LOCATION_CHANGE: 'APP.LOCATION_CHANGE',
       TOGGLE_MENU: 'APP.TOGGLE_MENU',
       TOGGLE_DARK_MODE: 'APP.TOGGLE_DARK_MODE',
+      CRASH_ERROR: 'APP.CRASH_ERROR',
     });
   });
 });

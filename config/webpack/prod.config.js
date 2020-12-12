@@ -12,7 +12,6 @@ const {
   htmlWebpackPlugin,
   copyWebpackPlugin,
   workboxPlugin,
-  // wrapperPlugin,
 } = require('./plugins');
 
 const mode = 'production';
@@ -55,8 +54,7 @@ module.exports = () => ({
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    workboxPlugin,
-    // wrapperPlugin,
+    workboxPlugin
   ],
   module: {
     rules

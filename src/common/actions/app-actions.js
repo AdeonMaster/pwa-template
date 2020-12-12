@@ -40,3 +40,11 @@ export const toggleDarkMode = (isDarkMode) => ({
     isDarkMode,
   },
 });
+
+export const crashError = (error, errorInfo) => ({
+  type: APP.CRASH_ERROR,
+  payload: {
+    error,
+    errorInfo,
+  },
+});

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { crashError } from '~/common/actions/app-actions';
 
 import ErrorScreen from './error-screen';
 
@@ -12,9 +15,11 @@ class ErrorBoundary extends Component {
     hasError: true,
   });
 
-  // componentDidCatch = (error, errorInfo) => {
-  //   console.log(error, errorInfo);
-  // }
+  componentDidCatch = (error, errorInfo) => {
+    const { crashError } = this.props;
+
+    crashError(error.toString(), errorInfo);
+  };
 
   render() {
     const { hasError } = this.state;
@@ -26,6 +31,11 @@ class ErrorBoundary extends Component {
 
 ErrorBoundary.propTypes = {
   children: PropTypes.node.isRequired,
+  crashError: PropTypes.func.isRequired,
 };
 
-export default ErrorBoundary;
+const mapDispatchToProps = {
+  crashError,
+};
+
+export default connect(null, mapDispatchToProps)(ErrorBoundary);

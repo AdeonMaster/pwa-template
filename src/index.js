@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import App from './app';
+import ErrorBoundary from './common/components/error-boundary';
 import './common/scss/main.scss';
 
 // call specific redux action on service worker updatefound event
@@ -37,7 +38,9 @@ if (process.env.NODE_ENV === 'development') {
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </Provider>,
   document.getElementById('root'),
 );

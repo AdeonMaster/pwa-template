@@ -55,4 +55,3 @@ DO NOT UPLOAD SOURCEMAPS (*.js.map) FILES!
 
 # Issues
 - Server: Requesting a non static asset file cause to return index.html document instead of 404 error
-- Environment: WrapperPlugin isn't compatible with webpack 5

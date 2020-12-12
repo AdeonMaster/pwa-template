@@ -14,6 +14,7 @@ export const MODAL = {
   EXAMPLE: 'example',
   PREFERENCES: 'preferences',
   NEW_VERSION: 'new-version',
+  APP_CRASH: 'app-crash',
 };
 
 export const FORM_STATE = {

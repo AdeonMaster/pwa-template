@@ -7,7 +7,6 @@ const {
   miniCssExtractPlugin,
   htmlWebpackPlugin,
   copyWebpackPlugin,
-  // wrapperPlugin,
   cleanWebpackPlugin,
   workboxPlugin,
 } = require('./plugins');
@@ -47,8 +46,7 @@ module.exports = () => ({
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    workboxPlugin,
-    // wrapperPlugin,
+    workboxPlugin
   ],
   module: {
     rules
