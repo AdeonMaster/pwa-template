@@ -1,0 +1,93 @@
+import groovy.json.JsonSlurperClassic 
+
+@NonCPS
+def jsonParse(def json) {
+    new groovy.json.JsonSlurperClassic().parseText(json)
+}
+
+def getGitReleases(accessToken, owner, repo) {
+    return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' https://api.github.com/repos/${owner}/${repo}/releases", returnStdout: true))
+}
+
+def getGitRelease(accessToken, owner, repo, releaseId) {
+    return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' https://api.github.com/repos/${owner}/${repo}/release/${releaseId}", returnStdout: true))
+}
+
+def downloadGitReleaseAssetFile(accessToken, owner, repo, assetId, outputFileName) {
+    return sh(script: "curl -L -H 'Authorization: token ${accessToken}' -H 'Accept:application/octet-stream' https://api.github.com/repos/${owner}/${repo}/releases/assets/${assetId} --output ${outputFileName}", returnStdout: true)
+}
+
+pipeline {
+    agent any
+    
+    tools {nodejs "nodejs-14.11.0"}
+    
+    environment {
+        GIT_ACCESS_TOKEN = 'YOUR-TOKEN-HERE'
+        GIT_OWNER = 'AdeonMaster'
+        GIT_REPO = 'pwa-template'
+        APP_URL = 'TARGET-APP-URL'
+    }
+    
+    stages {
+        stage('Input') {
+            steps {
+                script {
+                    def releases = getGitReleases(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO)
+
+                    // there is an error
+                    if (releases instanceof HashMap) {
+                        currentBuild.result = 'ABORTED'
+                        error('Error while receiving releases list. '+releases.message)
+                    }
+
+                    env.TARGET_ENV = input message: 'Please, select target environment', ok: 'Select', parameters: [choice(name: 'Environment', choices: 'DEV\nPROD')]
+                    env.TARGET_RELEASE = input message: 'Please, select target github release', ok: 'Select', parameters: [choice(name: 'Release', choices: (releases.collect {release -> return release.name }).join('\n'))]
+                    env.TARGET_APP_URL = env.TARGET_ENV == 'DEV' ? "dev.${APP_URL}" : "${APP_URL}"
+                }
+
+                echo "${env.TARGET_ENV}"
+                echo "${env.TARGET_RELEASE}"
+                echo "${env.TARGET_APP_URL}"
+            }
+        }
+        
+        stage('Download') {
+            steps {
+                script {
+                    sh(script: "rm -rf *", returnStdout: true)
+                    
+                    def releases = getGitReleases(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO)
+                    def release = releases.find { it.tag_name == env.TARGET_RELEASE } 
+                    def asset = release.assets.find { it.name == "dist.zip" }
+                    
+                    downloadGitReleaseAssetFile(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO, asset.id, "dist.zip")
+                    
+                    sh(script: "unzip -q dist.zip", returnStdout: true)
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sshPublisher(
+                    continueOnError: false, failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'cPanel PROD',
+                            verbose: true,
+                            transfers: [
+                                sshTransfer(
+                                    sourceFiles: "dist/**/*",
+                                    removePrefix: "dist",
+                                    excludes: "**/*.map",
+                                    remoteDirectory: "${TARGET_APP_URL}",
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+    }
+}
