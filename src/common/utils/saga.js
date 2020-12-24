@@ -1,7 +1,7 @@
 import { call, delay } from 'redux-saga/effects';
 
 /**
- * Used to fill remaining timeframe after saga call with delay
+ * Used to fill remaining timeframe after saga call with a delay
  *
  * @param {number} ms - A string param
  * @param {GeneratorFunction} saga - generator function (saga)
@@ -14,11 +14,13 @@ import { call, delay } from 'redux-saga/effects';
 export function* callWithTimeframeDelay(ms, saga, ...params) {
   const sagaStartTime = Date.now();
 
-  yield call(saga, ...params);
+  const result = yield call(saga, ...params);
 
   const sagaRemainingTime = ms - (Date.now() - sagaStartTime);
 
   if (sagaRemainingTime) {
     yield delay(sagaRemainingTime);
   }
+
+  return result;
 }

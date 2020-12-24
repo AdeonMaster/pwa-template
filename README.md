@@ -9,6 +9,10 @@ A lightweight `create-react-app` alternative for typical React project (React.js
 - Install `ca.ssl.indexnl.com.crt` certificate from `server/certificate` folder in order to use SSL on your localhost (See the [detailed installation guide for Windows users](#ssl-certificate-installation-detailed-guide-for-windows))
 - (Optional) Install `ca.ssl.indexnl.com.crt` certificate on your Android device in order to access localhost with no errors (See the [detailed installation guide for Android device](#ssl-certificate-installation-detailed-guide-for-android-device))
 
+# ChromeDriver for Linux
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+
 # Phone device debugging
 - [How to set up Chrome remote device debugging](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/local-server)
 - [SSL certificate installation detailed guide for Android device](https://michielsioen.be/2019-11-23-the-pwa-experiment-pt2-debugging/)
@@ -54,4 +58,4 @@ DO NOT UPLOAD SOURCEMAPS (*.js.map) FILES!
 - Enhancement: Cleanup .babelrc when Babel 8 will be released (https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
 
 # Issues
-- UI: `callWithTimeframeDelay` is not working as expected with a race condition
+- none

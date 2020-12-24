@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuDrawer should render properly 1`] = `
+<div
+  class="drawer-menu right shown"
+>
+  <div
+    class="drawer-menu-backdrop"
+  />
+  <div
+    class="drawer-menu-side align-left"
+  >
+    <p>
+      Drawer child content
+    </p>
+  </div>
+</div>
+`;

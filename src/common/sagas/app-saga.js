@@ -1,11 +1,10 @@
-import { all, put, takeEvery, call, select } from 'redux-saga/effects';
+import { all, put, takeEvery, call, select, take, race, delay } from 'redux-saga/effects';
 
 import { APP_ID, GLOBAL_LOCALE_WINDOW_PATH, MODAL } from '~/common/constants';
 import { callWithTimeframeDelay } from '~/common/utils/saga';
 import APP from '~/common/types/app-types';
 import {
   initSuccess,
-  // initFailure,
   toggleMenu,
   setLang,
   setLangSuccess,
@@ -22,15 +21,11 @@ export function* bootstrapSaga() {
 
   yield put(setLang(lang));
 
-  // yield race({
-  //   success: yield take(APP.SET_LANG_SUCCESS),
-  //   failure: yield take(APP.SET_LANG_FAILURE),
-  //   timeout: yield delay(10000),
-  // });
-
-  // if (failure || timeout) {
-  //   yield put(initFailure('Error while loading localization file'));
-  // }
+  yield race({
+    success: take(APP.SET_LANG_SUCCESS),
+    failure: take(APP.SET_LANG_FAILURE),
+    timeout: delay(10000),
+  });
 }
 
 export function* initSaga() {

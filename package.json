@@ -19,7 +19,8 @@
     "jest": "jest --config config/jest/jest.config.json",
     "jest:watch": "jest --config config/jest/jest.config.json --watch",
     "jest:coverage": "jest --config config/jest/jest.config.json --coverage",
-    "automate-local": "wdio run config/wdio.conf.js"
+    "automate-local": "wdio run config/wdio/gui.conf.js",
+    "automate-local:ci": "wdio run config/wdio/no-gui.conf.js"
   },
   "author": "AdeonMaster",
   "license": "MIT",

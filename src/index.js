@@ -15,6 +15,7 @@ import ErrorBoundary from './common/components/error-boundary';
 import './common/scss/main.scss';
 
 // Sentry.init({
+//   environment: process.env.NODE_ENV,
 //   dsn: SENTRY_DNS,
 //   integrations: [new Integrations.BrowserTracing()],
 

@@ -3,7 +3,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const SplashScreen = () => (
   <div className="bg-dark vw-100 vh-100 d-flex justify-content-center align-items-center">
-    <span className="fade-in">
+    <span className="fade-in overflow-hidden">
       <FontAwesomeIcon icon={faCircleNotch} className="text-white font-size-64 w-100 fa-spin" />
     </span>
   </div>

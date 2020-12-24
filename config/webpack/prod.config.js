@@ -28,7 +28,7 @@ module.exports = () => ({
     filename: '[name].[contenthash].js',
     publicPath: '/'
   },
-  devtool: 'source-map',
+  devtool: 'hidden-source-map',
   optimization: {
     minimizer: [
       terserPlugin,

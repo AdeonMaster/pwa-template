@@ -1,0 +1,75 @@
+import groovy.json.JsonSlurperClassic 
+
+@NonCPS
+def jsonParse(def json) {
+    new groovy.json.JsonSlurperClassic().parseText(json)
+}
+
+def getGitReleases(accessToken, owner, repo) {
+    return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' https://api.github.com/repos/${owner}/${repo}/releases", returnStdout: true))
+}
+
+pipeline {
+    agent any
+    
+    tools {nodejs "nodejs-14.11.0"}
+    
+    environment {
+        GIT_ACCESS_TOKEN = 'YOUR-TOKEN-HERE'
+        GIT_OWNER = 'AdeonMaster'
+        GIT_REPO = 'pwa-template'
+    }
+    
+    stages {
+        stage('Input') {
+            steps {
+                script {
+                    def releases = getGitReleases(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO)
+
+                    // there is an error
+                    if (releases instanceof HashMap) {
+                        currentBuild.result = 'ABORTED'
+                        error('Error while receiving releases list. '+releases.message)
+                    }
+
+                    env.TARGET_RELEASE = input message: 'Please, select target github release', ok: 'Select', parameters: [choice(name: 'Release', choices: (releases.collect {release -> return release.name }).join('\n'))]
+                }
+
+                echo "${env.TARGET_RELEASE}"
+            }
+        }
+        
+        stage('Git checkout') {
+            steps {
+                sh 'rm -rf *'
+                sh 'git clone git@github.com:${GIT_OWNER}/${GIT_REPO}.git'
+                dir("${GIT_REPO}") {
+                    sh 'git checkout ${TARGET_RELEASE}'
+                }
+            }
+        }
+
+        stage('Install') {
+            steps {
+                dir("${GIT_REPO}") {
+                    sh '''
+                        if [ -f "package-lock.json" ]; then
+                            npm ci
+                        else 
+                            npm i
+                        fi
+                    '''
+                }
+            }
+        }  
+
+
+        stage('Run tests') {
+            steps {
+                dir("${GIT_REPO}") {
+                    sh 'npm run automate-local:ci'
+                }
+            }
+        }
+    }
+}

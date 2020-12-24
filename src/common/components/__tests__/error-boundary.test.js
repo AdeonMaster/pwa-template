@@ -1,6 +1,11 @@
 import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+
+import store from '~/store';
 
 import ErrorBoundary from '../error-boundary';
+
+const wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
 
 // eslint-disable-next-line react/prop-types
 const TestComponent = ({ items }) => <p>Items count: {items.length}</p>;
@@ -11,6 +16,7 @@ describe('ErrorBoundary', () => {
       <ErrorBoundary>
         <TestComponent items={['First', 'Second']} />
       </ErrorBoundary>,
+      { wrapper },
     );
 
     expect(container.firstChild).toMatchSnapshot();
@@ -24,6 +30,7 @@ describe('ErrorBoundary', () => {
       <ErrorBoundary>
         <TestComponent />
       </ErrorBoundary>,
+      { wrapper },
     );
 
     expect(container.firstChild).toMatchSnapshot();
