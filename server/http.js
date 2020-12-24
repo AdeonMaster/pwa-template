@@ -13,8 +13,12 @@ app.use(compression());
 app.use(express.static(serverRootPath, {
   // maxAge: 31557600000
 }));
-app.get('*', (_, response) => {
-  response.sendFile(path.resolve(serverRootPath, 'index.html'));
+app.get('*', (request, response) => {
+  if (!path.extname(request.url)) {
+    response.sendFile(path.resolve(serverRootPath, 'index.html'));
+  } else {
+    response.status(404).send('Not found');
+  }
 });
 
 const server = http.createServer(app);

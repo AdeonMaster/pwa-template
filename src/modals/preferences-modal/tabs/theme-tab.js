@@ -1,9 +1,9 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CustomInput } from 'reactstrap';
 import { toggleDarkMode } from '~/common/actions/app-actions';
 import { getIsDarkMode } from '~/common/selectors/app-selectors';
-// import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+// import useDictionary from '~/common/hooks/localization/use-dictionary';
 
 const switchTheme = (name) => {
   const node = document.documentElement;

@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Input, FormText, Row, ButtonGroup, Col, FormGroup } from 'reactstrap';
 
 import Page from '~/pages/common/components/page';
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 import {
   socketAttachConnection,
   socketDetachConnection,

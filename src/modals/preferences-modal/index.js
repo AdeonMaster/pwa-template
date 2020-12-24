@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPalette, faLanguage, faBell } from '@fortawesome/free-solid-svg-icons';
 
 import { MODAL } from '~/common/constants';
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 import useModal from '~/common/hooks/use-modal';
 
 import { Switch, Case } from '~/common/components/switch-case';
@@ -32,7 +32,7 @@ const PreferencesModal = () => {
       <ModalHeader toggle={toggle}>{dictionary.get('preferences')}</ModalHeader>
       <ModalBody style={{ minHeight: '30vh' }}>
         <Row>
-          <Col lg={4}>
+          <Col lg={4} sm={5}>
             <TabList className="mb-2">
               <TabListItem active={tab === TAB.LANGUAGE} onClick={handleTabChange(TAB.LANGUAGE)}>
                 <FontAwesomeIcon icon={faLanguage} className="mr-2" />
@@ -51,7 +51,7 @@ const PreferencesModal = () => {
               </TabListItem>
             </TabList>
           </Col>
-          <Col lg={8}>
+          <Col lg={8} sm={7}>
             <Switch condition={tab}>
               <Case value={TAB.LANGUAGE}>
                 <LanguageTab />

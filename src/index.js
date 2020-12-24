@@ -5,11 +5,23 @@ import 'raf';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+// import * as Sentry from '@sentry/react';
+// import { Integrations } from '@sentry/tracing';
 
 import store from './store';
 import App from './app';
+// import { SENTRY_DNS } from './common/constants';
 import ErrorBoundary from './common/components/error-boundary';
 import './common/scss/main.scss';
+
+// Sentry.init({
+//   dsn: SENTRY_DNS,
+//   integrations: [new Integrations.BrowserTracing()],
+
+//   // We recommend adjusting this value in production, or using tracesSampler
+//   // for finer control
+//   tracesSampleRate: 1.0,
+// });
 
 // call specific redux action on service worker updatefound event
 if (window?.navigator?.serviceWorker?.getRegistrations) {

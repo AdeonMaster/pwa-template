@@ -16,11 +16,7 @@ const initFailure = (state, { error }) => ({
   error: error.message,
 });
 
-const setLang = (state, { payload: { lang } }) => {
-  if (lang === state.lang) {
-    return state;
-  }
-
+const setLangSuccess = (state, { payload: { lang } }) => {
   namespacedLocalStorage.setItem('lang', lang);
 
   return {
@@ -47,8 +43,8 @@ export default (state = initialState, action) => {
     case APP.INIT_FAILURE:
       return initFailure(state, action);
 
-    case APP.SET_LANG:
-      return setLang(state, action);
+    case APP.SET_LANG_SUCCESS:
+      return setLangSuccess(state, action);
 
     case APP.TOGGLE_MENU:
       return toggleMenu(state, action);

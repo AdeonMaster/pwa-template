@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from 'reactstrap';
 
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 import Page from '~/pages/common/components/page';
 import ExampleModal from '~/modals/example-modal';
 import { openModal } from '~/common/actions/modal-actions';

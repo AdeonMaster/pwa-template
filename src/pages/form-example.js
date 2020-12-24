@@ -1,7 +1,6 @@
-import React from 'react';
 import { Button, FormGroup, Label } from 'reactstrap';
 
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 import Page from '~/pages/common/components/page';
 import Field from '~/pages/common/components/field';
 import Form from '~/pages/common/components/form';

@@ -20,6 +20,20 @@ export const setLang = (lang) => ({
   },
 });
 
+export const setLangSuccess = (lang) => ({
+  type: APP.SET_LANG_SUCCESS,
+  payload: {
+    lang,
+  },
+});
+
+export const setLangFailure = (lang) => ({
+  type: APP.SET_LANG_FAILURE,
+  payload: {
+    lang,
+  },
+});
+
 export const locationChange = (location) => ({
   type: APP.LOCATION_CHANGE,
   payload: {

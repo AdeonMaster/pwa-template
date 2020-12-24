@@ -1,9 +1,8 @@
-import React from 'react';
 // import React, { useCallback } from 'react';
 import { CustomInput } from 'reactstrap';
 // import { useDispatch } from 'react-redux';
 
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 
 const NotificationsTab = () => {
   const dictionary = useDictionary();

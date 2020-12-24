@@ -1,9 +1,8 @@
-import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 import useModal from '~/common/hooks/use-modal';
 import { MODAL } from '~/common/constants';
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 
 const handleRefreshButtonClick = () => {
   window.location.reload();

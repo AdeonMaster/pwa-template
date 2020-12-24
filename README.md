@@ -51,7 +51,7 @@ DO NOT UPLOAD SOURCEMAPS (*.js.map) FILES!
 
 # To Do
 - Roadmap: Add notification preferences logic
-- Enhancement: Add custom error logging service (Sentry.io?)
+- Enhancement: Cleanup .babelrc when Babel 8 will be released (https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
 
 # Issues
-- Server: Requesting a non static asset file cause to return index.html document instead of 404 error
+- UI: `callWithTimeframeDelay` is not working as expected with a race condition

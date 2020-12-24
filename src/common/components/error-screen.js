@@ -1,8 +1,7 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDizzy } from '@fortawesome/free-regular-svg-icons';
 
-import AppCrashModal from '~/modals/app-crash-modal';
+import CrashModal from '~/modals/crash-modal';
 
 const ErrorScreen = () => (
   <>
@@ -10,7 +9,7 @@ const ErrorScreen = () => (
       <FontAwesomeIcon icon={faDizzy} className="font-size-256 w-100" />
     </div>
 
-    <AppCrashModal />
+    <CrashModal />
   </>
 );
 

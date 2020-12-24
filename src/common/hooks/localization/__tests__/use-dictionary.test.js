@@ -1,4 +1,4 @@
-import { getTranslatedString } from '..';
+import { getTranslatedString } from '../use-dictionary';
 
 describe('Localization utils', () => {
   describe('getLocalizationFileRequest', () => {

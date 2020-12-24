@@ -4,6 +4,8 @@ import {
   initSuccess,
   initFailure,
   setLang,
+  setLangSuccess,
+  setLangFailure,
   locationChange,
   toggleMenu,
   toggleDarkMode,
@@ -29,9 +31,27 @@ describe('app-actions', () => {
     });
   });
 
-  it('initSuccess', () => {
+  it('setLang', () => {
     expect(setLang(LANG.EN)).toEqual({
       type: APP.SET_LANG,
+      payload: {
+        lang: LANG.EN,
+      },
+    });
+  });
+
+  it('setLangSuccess', () => {
+    expect(setLangSuccess(LANG.EN)).toEqual({
+      type: APP.SET_LANG_SUCCESS,
+      payload: {
+        lang: LANG.EN,
+      },
+    });
+  });
+
+  it('setLangFailure', () => {
+    expect(setLangFailure(LANG.EN)).toEqual({
+      type: APP.SET_LANG_FAILURE,
       payload: {
         lang: LANG.EN,
       },

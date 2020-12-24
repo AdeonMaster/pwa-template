@@ -1,4 +1,3 @@
-import React from 'react';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { render } from '@testing-library/react';
 

@@ -29,6 +29,8 @@
     "sonarjs"
   ],
   "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
 		"max-len": "off",
     "no-console": "warn",
     "react/no-unescaped-entities": "off",

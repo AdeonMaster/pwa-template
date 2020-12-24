@@ -1,10 +1,10 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { CustomInput, FormText } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { values } from 'ramda';
 
 import { LANG, LANG_NAME } from '~/common/constants';
-import useDictionary from '~/@adeon/localization/hooks/use-dictionary';
+import useDictionary from '~/common/hooks/localization/use-dictionary';
 
 import { getLang } from '~/common/selectors/app-selectors';
 import { setLang } from '~/common/actions/app-actions';
