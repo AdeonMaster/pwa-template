@@ -81,16 +81,11 @@ export function* crashErrorSaga({ payload: { error, errorInfo } }) {
   yield put(openModal(MODAL.CRASH, { error, errorInfo }));
 }
 
-export function* serviceWorkerUpdatedSaga() {
-  yield put(openModal(MODAL.NEW_VERSION));
-}
-
 export default function* appRootSaga() {
   yield all([
     takeEvery(APP.INIT, initSaga),
     takeEvery(APP.LOCATION_CHANGE, locationChangeSaga),
     takeEvery(APP.SET_LANG, setLangSaga),
     takeEvery(APP.CRASH_ERROR, crashErrorSaga),
-    takeEvery('sw/updated', serviceWorkerUpdatedSaga),
   ]);
 }

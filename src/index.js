@@ -24,23 +24,6 @@ import './common/scss/main.scss';
 //   tracesSampleRate: 1.0,
 // });
 
-// call specific redux action on service worker updatefound event
-if (window?.navigator?.serviceWorker?.getRegistrations) {
-  window.navigator.serviceWorker.getRegistrations().then((registrations) => {
-    const [registration] = registrations;
-
-    if (registration) {
-      registration.addEventListener('updatefound', (event) => {
-        if (event.currentTarget.active) {
-          store.dispatch({
-            type: 'sw/updated',
-          });
-        }
-      });
-    }
-  });
-}
-
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line global-require
   const whyDidYouRender = require('@welldone-software/why-did-you-render');

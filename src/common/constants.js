@@ -17,7 +17,6 @@ export const LANG_NAME = {
 export const MODAL = {
   EXAMPLE: 'example',
   PREFERENCES: 'preferences',
-  NEW_VERSION: 'new-version',
   CRASH: 'crash',
 };
 
