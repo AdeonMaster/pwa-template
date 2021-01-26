@@ -11,6 +11,7 @@
   .invalid-tooltip {
     position: relative;
     top: 0px;
+    display: block;
   }
   select.form-control.is-invalid {
     background-position: right 1rem center;
@@ -24,6 +25,7 @@
   .invalid-tooltip {
     position: relative;
     top: 0px;
+    display: block;
   }
   select.form-control.is-invalid {
     background-position: right 1rem center;

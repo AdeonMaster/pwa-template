@@ -2,27 +2,10 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
 import { Input, CustomInput, FormFeedback } from 'reactstrap';
-import { pathOr } from 'ramda';
+
 import useDictionary from '~/common/hooks/localization/use-dictionary';
 
-const allowedRuleTypes = [
-  'required',
-  'pattern',
-  'validator',
-  'maxLength',
-  'minLength',
-  'max',
-  'min',
-];
-
-const getError = (name, errors) =>
-  pathOr(undefined, name.replace(/(?:\[(\d+)\])/g, '.$1').split('.'), errors);
-
-const getErrorMessage = ({ type, message }, dictionary) =>
-  message ||
-  dictionary.get(
-    allowedRuleTypes.includes(type) ? `validation-rule.${type}` : 'validation-rule.default',
-  );
+import { getError, getErrorMessage } from '../utils';
 
 const Field = ({ type = 'text', name, children, rules = {}, ...props }) => {
   const dictionary = useDictionary();

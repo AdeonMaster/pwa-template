@@ -15,9 +15,9 @@ describe('input-icon-addon', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  it('should render properly when side is right', () => {
+  it('should render properly when align is right', () => {
     const { container } = render(
-      <InputIconAddon icon={faUser} side="right">
+      <InputIconAddon icon={faUser} align="right">
         <Input type="text" name="user-name" />
       </InputIconAddon>,
     );

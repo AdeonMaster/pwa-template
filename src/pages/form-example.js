@@ -2,8 +2,7 @@ import { Button, FormGroup, Label } from 'reactstrap';
 
 import useDictionary from '~/common/hooks/localization/use-dictionary';
 import Page from '~/pages/common/components/page';
-import Field from '~/pages/common/components/field';
-import Form from '~/pages/common/components/form';
+import { Form, Field } from '~/common/components/reactstrap/form';
 import { isNumber } from '~/common/utils/number';
 
 const defaultValues = {

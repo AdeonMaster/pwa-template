@@ -1,8 +1,7 @@
 /**
  * Generic promise based sleep function
  *
- * @param {number} ms Number of milliseconds to sleep
- * @returns {Promise}
+ * @param ms Number of milliseconds to sleep
  *
  * @example
  * await sleep(500).then(() => {

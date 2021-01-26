@@ -1,3 +1,12 @@
+/**
+ * Used to format strings
+ *
+ * @param string String to be formatted
+ * @param args Arguments to be applied
+ *
+ * @example
+ * format('The quick brown {0} jumps over the lazy {1}', 'fox', 'dog');
+ */
 export const format = (string, ...args) => {
   let formatted = string;
 
