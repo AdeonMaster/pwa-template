@@ -16,6 +16,9 @@
   select.form-control.is-invalid {
     background-position: right 1rem center;
   }
+  .form-row > .col > .invalid-tooltip, .form-row > [class*="col-"] > .invalid-tooltip {
+    left: 0px;
+  }
 }
 
 .light-theme {
@@ -29,5 +32,8 @@
   }
   select.form-control.is-invalid {
     background-position: right 1rem center;
+  }
+  .form-row > .col > .invalid-tooltip, .form-row > [class*="col-"] > .invalid-tooltip {
+    left: 0px;
   }
 }

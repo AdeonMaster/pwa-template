@@ -9,6 +9,10 @@ def getGitBranches(accessToken, owner, repo) {
     return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' https://api.github.com/repos/${owner}/${repo}/branches", returnStdout: true))
 }
 
+def getGitReleases(accessToken, owner, repo) {
+    return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' https://api.github.com/repos/${owner}/${repo}/releases", returnStdout: true))
+}
+
 def createGitRelease(accessToken, owner, repo, tagName, targetCommitish, name, body, draft = false, prerelease = false) {
     return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' -d '{ \"tag_name\": \"${tagName}\", \"target_commitish\": \"${targetCommitish}\", \"name\": \"${name}\", \"body\": \"${body}\", \"draft\": ${draft}, \"prerelease\": ${prerelease} }' https://api.github.com/repos/${owner}/${repo}/releases", returnStdout: true))
 }
@@ -17,13 +21,19 @@ def uploadGitReleaseAsset(accessToken, owner, repo, releaseId, fileName) {
     return jsonParse(sh(script: "curl -H 'Authorization: token ${accessToken}' -H 'Content-Type: application/octet-stream' --data-binary @'${fileName}' https://uploads.github.com/repos/${owner}/${repo}/releases/${releaseId}/assets?name=${fileName}", returnStdout: true))
 }
 
+def getPackageVersion() {
+    return sh(script: "node -p \"require('./package.json').version\"", returnStdout: true).replaceAll('\\s', '')
+}
+
 pipeline {
     agent any
     
-    tools {nodejs "nodejs-14.11.0"}
+    tools {
+        nodejs 'nodejs-15.5.0'
+    }
     
     environment {
-        GIT_ACCESS_TOKEN = 'YOUR-TOKEN-HERE'
+        GIT_ACCESS_TOKEN = 'YOUR_TOKEN_HERE'
         GIT_OWNER = 'AdeonMaster'
         GIT_REPO = 'pwa-template'
     }
@@ -40,8 +50,42 @@ pipeline {
                         error('Error while receiving branch list. '+branches.message)
                     }
                     
-                    env.TARGET_BRANCH = input message: 'Please, select target branch to make a release from', ok: 'Select', parameters: [choice(name: 'Branch', choices: (branches.collect {branch -> return branch.name}))]
-                    env.TARGET_VERSION = input message: 'Please, select target version', ok: 'Select', parameters: [choice(name: 'Version', choices: 'patch\nminor\nmajor')]
+                    env.TARGET_BRANCH = input(
+                        message: 'Please, select target branch to make a release from',
+                        ok: 'Select',
+                        parameters: [
+                            choice(name: 'Branch', choices: (branches.collect {branch -> return branch.name}))
+                        ]
+                    )
+                    env.TARGET_VERSION = input(
+                        message: 'Please, select target version',
+                        ok: 'Select',
+                        parameters: [
+                            choice(name: 'Version', choices: ['patch', 'minor', 'major', 'custom'].join('\n'))
+                        ]
+                    )
+                    
+                    if (env.TARGET_VERSION == 'custom') {
+                        env.TARGET_VERSION = input(
+                            message: 'Please, enter a custom version\n(ex: 1.0.0-patch-RC1)', 
+                            parameters: [
+                                [$class: 'TextParameterDefinition', name: 'Version']
+                            ]
+                        )
+                    }
+                    
+                    def releases = getGitReleases(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO)
+                    if (releases instanceof HashMap) {
+                        currentBuild.result = 'ABORTED'
+                        error('Error while receiving releases list. '+releases.message)
+                    }
+                    
+                    env.IS_FIRST_RELEASE = !releases.size()
+                    
+                    echo 'Variables:'
+                    echo "${env.TARGET_BRANCH}"
+                    echo "${env.TARGET_VERSION}"
+                    echo "${env.IS_FIRST_RELEASE}"
                 }
             }
         }
@@ -82,7 +126,18 @@ pipeline {
         stage('Update version') {
             steps {
                 dir("${GIT_REPO}") {
-                    sh 'npm version ${TARGET_VERSION}'
+                    script {
+                        def currentPackageVersion = getPackageVersion()
+                        echo 'Current package version: '+currentPackageVersion
+
+                        // check if patch/minor/major is applied after non standard custom
+                        if (['patch', 'minor', 'major'].contains(env.TARGET_VERSION) && !(currentPackageVersion =~ /^\d+.\d+.\d+$/).size()) {
+                            currentBuild.result = 'ABORTED'
+                            error('You\'re trying to increase version number of a non standard version pattern. Please use a custom version with standard pattern eq. 1.0.0')
+                        }
+                        
+                        sh(script: "npm version ${TARGET_VERSION}")
+                    }
                 }
             }
         }
@@ -102,10 +157,10 @@ pipeline {
                     sh 'git push --set-upstream origin ${TARGET_BRANCH}'
                     sh 'zip -r dist.zip dist/'
                     script {
-                        def version = sh(script: "node -p \"require('./package.json').version\"", returnStdout: true).replaceAll("\\s","")
+                        def version = getPackageVersion()
                         def release = createGitRelease(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO, version, env.TARGET_BRANCH, version, "Release of ${version}")
 
-                        uploadGitReleaseAsset(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO, release.id, "dist.zip")
+                        uploadGitReleaseAsset(env.GIT_ACCESS_TOKEN, env.GIT_OWNER, env.GIT_REPO, release.id, 'dist.zip')
                     }
                 }
             }

@@ -2,11 +2,20 @@ import { useState, useCallback, useMemo } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { split, replace, toLower, all, flip, includes } from 'ramda';
 
 import classnames from '~/common/utils/classnames';
 import InputIconAddon from '~/common/components/reactstrap/input-icon-addon';
 import useDictionary from '~/common/hooks/localization/use-dictionary';
 import './dropdown-search-select.scss';
+
+const DIVIDER = ' ';
+const WHITESPACES_REGEXPR = /\s+/g;
+
+// search query utils
+const toSearchTags = (searchValue) =>
+  split(DIVIDER, replace(WHITESPACES_REGEXPR, DIVIDER, toLower(searchValue)));
+const doesStringContainsTags = (str, tags) => all(flip(includes)(str), tags);
 
 const preventDefault = (event) => event.preventDefault();
 
@@ -40,12 +49,13 @@ const DropdownSearchSelect = ({
   }, [setSearchValue, onClear]);
 
   const optionsNodes = useMemo(() => {
-    const filteredOptions =
-      searchValue === ''
-        ? options
-        : options.filter(({ displayValue, skip }) =>
-            skip ? true : displayValue.indexOf(searchValue) !== -1,
-          );
+    const searchTags = toSearchTags(searchValue);
+
+    const filteredOptions = !searchTags.length
+      ? options
+      : options.filter(({ displayValue, skip }) =>
+          skip ? true : doesStringContainsTags(toLower(displayValue), searchTags),
+        );
 
     return filteredOptions.map((option) => (
       <DropdownItem

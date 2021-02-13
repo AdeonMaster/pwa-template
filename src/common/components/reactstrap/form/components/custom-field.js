@@ -9,7 +9,7 @@ import { getError, getErrorMessage } from '../utils';
 
 const CustomField = ({ component: Component, name, children, rules = {}, ...props }) => {
   const dictionary = useDictionary();
-  const { watch, setValue, register, errors } = useFormContext();
+  const { watch, setValue, register, unregister, errors } = useFormContext();
 
   const fieldError = getError(name, errors);
   const isInvalid = fieldError !== undefined;
@@ -19,7 +19,11 @@ const CustomField = ({ component: Component, name, children, rules = {}, ...prop
 
   useEffect(() => {
     register({ name }, rules);
-  }, [register, name, rules]);
+
+    return () => {
+      unregister(name);
+    };
+  }, [register, unregister, name, rules]);
 
   return (
     <>

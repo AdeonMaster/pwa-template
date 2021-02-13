@@ -16,13 +16,13 @@ const Page = ({ title, className, children, header }) => {
   }, [title]);
 
   return (
-    <div
+    <main
       className={className ? `${rootClassName} ${className}` : rootClassName}
       style={wrapperStyle}
     >
       {header && <Header />}
       {children}
-    </div>
+    </main>
   );
 };
 

@@ -17,22 +17,6 @@ export const pathOrTrue = pathOr(BOOLEAN.TRUE);
 
 export const namespacedLocalStorage = new NamespacedLocalStorage(APP_ID);
 
-export const isCookieEnabled = () => {
-  try {
-    if (window.navigator.cookieEnabled) {
-      return true;
-    }
-
-    document.cookie = 'testcookie';
-    const cookieEnabled = document.cookie.indexOf('testcookie') !== -1;
-    document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
-
-    return cookieEnabled;
-  } catch (error) {
-    return false;
-  }
-};
-
 export const getBrowserLang = () => window.navigator.language || window.navigator.userLanguage;
 
 export const setFavicon = (url) => {
@@ -42,3 +26,12 @@ export const setFavicon = (url) => {
     node.href = `${window.location.origin}${url}`;
   }
 };
+
+export const isLocalhost = () =>
+  Boolean(
+    window.location.hostname === 'localhost' ||
+      // [::1] is the IPv6 localhost address.
+      window.location.hostname === '[::1]' ||
+      // 127.0.0.1/8 is considered localhost for IPv4.
+      window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/),
+  );

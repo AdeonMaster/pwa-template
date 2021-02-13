@@ -46,7 +46,7 @@ module.exports = () => ({
     miniCssExtractPlugin,
     htmlWebpackPlugin,
     copyWebpackPlugin,
-    workboxPlugin
+    workboxPlugin(mode)
   ],
   module: {
     rules

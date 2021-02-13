@@ -22,10 +22,10 @@ const Header = () => {
   ]);
 
   return (
-    <div className="header p-2 d-flex justify-content-between">
+    <header className="header p-2 d-flex justify-content-between">
       <MenuButton onClick={handleMenuOpen} />
       <PreferencesMenuButton onClick={handlePreferencesModalOpen} />
-    </div>
+    </header>
   );
 };
 

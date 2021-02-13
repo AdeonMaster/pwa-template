@@ -58,4 +58,5 @@ DO NOT UPLOAD SOURCEMAPS (*.js.map) FILES!
 - Enhancement: Cleanup .babelrc when Babel 8 will be released (https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
 
 # Issues
-- none
+- `husky` was removed due it's unknown error. Please take a look at it and bring back if possible
+- `WorkboxPlugin` doesn't support webpack sourcemap options (https://github.com/GoogleChrome/workbox/issues/2559)
