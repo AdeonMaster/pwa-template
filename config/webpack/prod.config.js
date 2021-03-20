@@ -2,7 +2,6 @@ const path = require('path');
 
 const rules = require('./rules');
 const {
-  packageVersionPlugin,
   envPlugin,
   terserPlugin,
   jsonMinimizerPlugin,
@@ -49,7 +48,6 @@ module.exports = () => ({
   },
   plugins: [
     envPlugin(mode),
-    packageVersionPlugin(),
     cleanWebpackPlugin,
     miniCssExtractPlugin,
     htmlWebpackPlugin,

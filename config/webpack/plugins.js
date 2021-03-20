@@ -9,25 +9,19 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const JsonMinimizerPlugin = require('json-minimizer-webpack-plugin');
 
-const envPlugin = (mode = 'development') => new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: JSON.stringify(mode)
-  }
-});
-
-const packageVersionPlugin = () => {
+const envPlugin = (mode = 'development') => {
   const packageJson = fs.readFileSync('./package.json')
   const version = JSON.parse(packageJson).version || 0;
 
   return new webpack.DefinePlugin({
     'process.env': {
+      NODE_ENV: JSON.stringify(mode),
       PACKAGE_VERSION: `"${version}"`
     }
   });
 }
 
 module.exports = {
-  packageVersionPlugin,
   envPlugin,
   cssMinimizerPlugin: new CssMinimizerPlugin(),
   miniCssExtractPlugin: new MiniCssExtractPlugin({
