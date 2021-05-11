@@ -16,9 +16,10 @@ const LanguageTab = () => {
   const dispatch = useDispatch();
   const lang = useSelector(getLang);
 
-  const handleLanguageChange = useCallback(({ target: { value } }) => dispatch(setLang(value)), [
-    dispatch,
-  ]);
+  const handleLanguageChange = useCallback(
+    ({ target: { value } }) => dispatch(setLang(value)),
+    [dispatch],
+  );
 
   return (
     <>

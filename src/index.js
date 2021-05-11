@@ -33,6 +33,41 @@ import './common/scss/main.scss';
 // });
 // }
 
+// // fix for React & Chrome Google Translate issue
+// if (typeof Node === 'function' && Node.prototype) {
+//   const originalRemoveChild = Node.prototype.removeChild;
+//   // eslint-disable-next-line func-names
+//   Node.prototype.removeChild = function (child) {
+//     if (child.parentNode !== this) {
+//       if (console) {
+//         // eslint-disable-next-line no-console
+//         console.error('Cannot remove a child from a different parent', child, this);
+//       }
+//       return child;
+//     }
+//     // eslint-disable-next-line prefer-rest-params
+//     return originalRemoveChild.apply(this, arguments);
+//   };
+
+//   const originalInsertBefore = Node.prototype.insertBefore;
+//   // eslint-disable-next-line func-names
+//   Node.prototype.insertBefore = function (newNode, referenceNode) {
+//     if (referenceNode && referenceNode.parentNode !== this) {
+//       if (console) {
+//         // eslint-disable-next-line no-console
+//         console.error(
+//           'Cannot insert before a reference node from a different parent',
+//           referenceNode,
+//           this,
+//         );
+//       }
+//       return newNode;
+//     }
+//     // eslint-disable-next-line prefer-rest-params
+//     return originalInsertBefore.apply(this, arguments);
+//   };
+// }
+
 // call specific redux action on service worker updatefound event
 if (window?.navigator?.serviceWorker?.getRegistrations) {
   window.navigator.serviceWorker

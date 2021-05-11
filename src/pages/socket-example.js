@@ -29,18 +29,19 @@ const SocketExample = () => {
   const [messageName, setMessageName] = useState(defaultMessageName);
   const [messagePayload, setMessagePayload] = useState(defaultMessagePayload);
   const handleUrlChange = useCallback((event) => setUrl(event.target.value), [setUrl]);
-  const handleSocketConnect = useCallback(() => dispatch(socketAttachConnection(url)), [
-    url,
-    dispatch,
-  ]);
+  const handleSocketConnect = useCallback(
+    () => dispatch(socketAttachConnection(url)),
+    [url, dispatch],
+  );
   const handleSocketDisconnect = useCallback(() => dispatch(socketDetachConnection()), [dispatch]);
   const handleSocketEmit = useCallback(
     () => dispatch(socketEmitMessage(messageName, JSON.parse(messagePayload))),
     [dispatch, messageName, messagePayload],
   );
-  const handleMessageNameChange = useCallback(({ target: { value } }) => setMessageName(value), [
-    setMessageName,
-  ]);
+  const handleMessageNameChange = useCallback(
+    ({ target: { value } }) => setMessageName(value),
+    [setMessageName],
+  );
   const handleMessagePayloadChange = useCallback(
     ({ target: { value } }) => setMessagePayload(value),
     [setMessagePayload],

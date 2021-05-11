@@ -13,13 +13,14 @@ const Header = () => {
   const dispatch = useDispatch();
   const isMenuOpen = useSelector(getIsMenuOpen);
 
-  const handleMenuOpen = useCallback(() => dispatch(toggleMenu(!isMenuOpen)), [
-    isMenuOpen,
-    dispatch,
-  ]);
-  const handlePreferencesModalOpen = useCallback(() => dispatch(openModal(MODAL.PREFERENCES)), [
-    dispatch,
-  ]);
+  const handleMenuOpen = useCallback(
+    () => dispatch(toggleMenu(!isMenuOpen)),
+    [isMenuOpen, dispatch],
+  );
+  const handlePreferencesModalOpen = useCallback(
+    () => dispatch(openModal(MODAL.PREFERENCES)),
+    [dispatch],
+  );
 
   return (
     <header className="header p-2 d-flex justify-content-between">

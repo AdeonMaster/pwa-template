@@ -1,11 +1,13 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Input } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { split, replace, toLower, all, flip, includes } from 'ramda';
 
+import { EMPTY_STRING } from '~/common/constants';
 import classnames from '~/common/utils/classnames';
 import InputIconAddon from '~/common/components/reactstrap/input-icon-addon';
+import DebouncedInput from '~/common/components/reactstrap/debounced-input';
 import useDictionary from '~/common/hooks/localization/use-dictionary';
 import './dropdown-search-select.scss';
 
@@ -42,7 +44,7 @@ const DropdownSearchSelect = ({
     [onChange],
   );
 
-  const handleSearch = useCallback((event) => setSearchValue(event.target.value), [setSearchValue]);
+  const handleSearch = useCallback((value) => setSearchValue(value), [setSearchValue]);
   const handleClear = useCallback(() => {
     setSearchValue('');
     onClear();
@@ -94,9 +96,20 @@ const DropdownSearchSelect = ({
       ]),
     [className, disabled, valid, invalid],
   );
+  const combinedRootClassName = useMemo(
+    () =>
+      classnames([
+        'dropdown-search-select',
+        {
+          'is-valid': valid,
+          'is-invalid': invalid,
+        },
+      ]),
+    [invalid, valid],
+  );
 
   return (
-    <Dropdown isOpen={isOpen} toggle={toggle} className="dropdown-search-select">
+    <Dropdown isOpen={isOpen} toggle={toggle} className={combinedRootClassName}>
       <DropdownToggle
         tag="button"
         className={combinedClassName}
@@ -109,11 +122,11 @@ const DropdownSearchSelect = ({
         <div className="px-2">
           <InputIconAddon
             align="right"
-            icon={searchValue === '' ? null : faTimes}
+            icon={searchValue === EMPTY_STRING ? null : faTimes}
             onClick={handleClear}
             className="clear-icon"
           >
-            <Input
+            <DebouncedInput
               type="text"
               placeholder={dictionary.get('search')}
               value={searchValue}
@@ -135,7 +148,7 @@ const DropdownSearchSelect = ({
 };
 
 DropdownSearchSelect.defaultProps = {
-  placeholder: '',
+  placeholder: EMPTY_STRING,
   onClear: () => undefined,
 };
 

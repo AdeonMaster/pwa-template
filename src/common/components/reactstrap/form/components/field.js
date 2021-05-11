@@ -1,18 +1,18 @@
-import { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { useFormContext } from 'react-hook-form';
+import { useMemo } from 'react';
 import { Input, CustomInput, FormFeedback } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import useDictionary from '~/common/hooks/localization/use-dictionary';
 
-import { getError, getErrorMessage } from '../utils';
+import { getErrorMessage, getError } from '../utils';
 
-const Field = ({ type = 'text', name, children, rules = {}, ...props }) => {
+const Field = ({ type, name, rules, children, ...otherProps }) => {
   const dictionary = useDictionary();
-  const { register, errors } = useFormContext();
-
-  const fieldError = getError(name, errors);
-  const isInvalid = fieldError !== undefined;
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   const Component = useMemo(() => {
     switch (type) {
@@ -26,12 +26,22 @@ const Field = ({ type = 'text', name, children, rules = {}, ...props }) => {
     }
   }, [type]);
 
+  const { ref, ...otherFieldProps } = register(name, rules);
+
+  const errorMessage = getErrorMessage(getError(name, errors), dictionary);
+
   return (
     <>
-      <Component type={type} name={name} {...props} innerRef={register(rules)} invalid={isInvalid}>
+      <Component
+        innerRef={ref}
+        type={type}
+        invalid={!!errorMessage}
+        {...otherFieldProps}
+        {...otherProps}
+      >
         {children}
       </Component>
-      {isInvalid && <FormFeedback tooltip>{getErrorMessage(fieldError, dictionary)}</FormFeedback>}
+      {errorMessage && <FormFeedback>{errorMessage}</FormFeedback>}
     </>
   );
 };

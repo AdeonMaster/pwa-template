@@ -53,10 +53,11 @@ DO NOT UPLOAD SOURCEMAPS (*.js.map) FILES!
 - Keep project dependencies "up to date" (ncu -u)
 - Optimize newly added dependencies with `babel-plugin-transform-imports` (See [examples](https://www.npmjs.com/package/babel-plugin-transform-imports))
 
-# To Do
-- Roadmap: Add notification preferences logic
-- Enhancement: Cleanup .babelrc when Babel 8 will be released (https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)
-
 # Issues
-- `husky` was removed due it's unknown error. Please take a look at it and bring back if possible
-- `WorkboxPlugin` doesn't support webpack sourcemap options (https://github.com/GoogleChrome/workbox/issues/2559)
+- (Highest) Chrome Google Translate isn't compatible with React (https://github.com/facebook/react/issues/11538#issuecomment-417504600) 
+- (Low) `husky` was removed due it's unknown error. Please take a look at it and bring back if possible
+- (Low) `WorkboxPlugin` doesn't support webpack sourcemap options (https://github.com/GoogleChrome/workbox/issues/2559)
+
+# To Do
+- (Hightest) Inline `Sentry.io` code in order to make it independent of the main app bundle
+- (Low) Add `react-window` in order to increase dropdown-select list performance

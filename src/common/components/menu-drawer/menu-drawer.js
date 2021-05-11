@@ -5,9 +5,10 @@ import classnames from '~/common/utils/classnames';
 import './menu-drawer.scss';
 
 const MenuDrawer = ({ isOpen, toggle, align, children, className }) => {
-  const rootClassName = useMemo(() => classnames(['drawer-menu right', isOpen && 'shown']), [
-    isOpen,
-  ]);
+  const rootClassName = useMemo(
+    () => classnames(['drawer-menu right', isOpen && 'shown']),
+    [isOpen],
+  );
   const sideClassName = useMemo(
     () => classnames(['drawer-menu-side', `align-${align}`, className]),
     [align, className],

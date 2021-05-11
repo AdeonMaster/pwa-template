@@ -13,10 +13,10 @@ const SideMenu = () => {
   const isMenuOpen = useSelector(getIsMenuOpen);
   const dictionary = useDictionary();
 
-  const handleMenuToggle = useCallback(() => dispatch(toggleMenu(!isMenuOpen)), [
-    isMenuOpen,
-    dispatch,
-  ]);
+  const handleMenuToggle = useCallback(
+    () => dispatch(toggleMenu(!isMenuOpen)),
+    [isMenuOpen, dispatch],
+  );
 
   return (
     <DrawerMenu isOpen={isMenuOpen} toggle={handleMenuToggle}>

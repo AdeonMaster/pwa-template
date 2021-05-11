@@ -2,6 +2,7 @@ import { useState, useCallback, useMemo } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 
+import { EMPTY_STRING } from '~/common/constants';
 import classnames from '~/common/utils/classnames';
 
 const preventDefault = (event) => event.preventDefault();
@@ -66,9 +67,20 @@ const DropdownSelect = ({
       ]),
     [className, disabled, valid, invalid],
   );
+  const rootCombinedClassName = useMemo(
+    () =>
+      classnames([
+        {
+          'is-valid': valid,
+          'is-invalid': invalid,
+        },
+        className,
+      ]),
+    [className, valid, invalid],
+  );
 
   return (
-    <Dropdown isOpen={isOpen} toggle={toggle}>
+    <Dropdown isOpen={isOpen} toggle={toggle} className={rootCombinedClassName}>
       <DropdownToggle
         tag="button"
         className={combinedClassName}
@@ -83,7 +95,7 @@ const DropdownSelect = ({
 };
 
 DropdownSelect.defaultProps = {
-  placeholder: '',
+  placeholder: EMPTY_STRING,
 };
 
 DropdownSelect.propTypes = {

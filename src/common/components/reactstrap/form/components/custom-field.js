@@ -1,43 +1,52 @@
-import PropTypes from 'prop-types';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useController } from 'react-hook-form';
 import { FormFeedback } from 'reactstrap';
-import { useCallback, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import useDictionary from '~/common/hooks/localization/use-dictionary';
 
-import { getError, getErrorMessage } from '../utils';
+import { getErrorMessage, getError } from '../utils';
 
-const CustomField = ({ component: Component, name, children, rules = {}, ...props }) => {
+const CustomField = ({
+  component: Component,
+  name,
+  defaultValue,
+  rules,
+  children,
+  ...otherProps
+}) => {
   const dictionary = useDictionary();
-  const { watch, setValue, register, unregister, errors } = useFormContext();
 
-  const fieldError = getError(name, errors);
-  const isInvalid = fieldError !== undefined;
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
-  const value = watch(name);
-  const handleChange = useCallback((value) => setValue(name, value), [name, setValue]);
+  const {
+    field: { ref, ...inputProps },
+    fieldState: { invalid },
+  } = useController({
+    name,
+    control,
+    rules,
+    defaultValue,
+  });
 
-  useEffect(() => {
-    register({ name }, rules);
-
-    return () => {
-      unregister(name);
-    };
-  }, [register, unregister, name, rules]);
+  const errorMessage = getErrorMessage(getError(name, errors), dictionary);
 
   return (
     <>
-      <Component name={name} {...props} value={value} onChange={handleChange} invalid={isInvalid}>
+      <Component invalid={invalid} {...otherProps} {...inputProps} innerRef={ref}>
         {children}
       </Component>
-      {isInvalid && <FormFeedback tooltip>{getErrorMessage(fieldError, dictionary)}</FormFeedback>}
+      {errorMessage && <FormFeedback>{errorMessage}</FormFeedback>}
     </>
   );
 };
 
 CustomField.propTypes = {
-  component: PropTypes.any,
+  component: PropTypes.any.isRequired,
   name: PropTypes.string.isRequired,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   children: PropTypes.node,
   rules: PropTypes.object,
 };

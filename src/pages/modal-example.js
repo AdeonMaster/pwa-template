@@ -16,9 +16,10 @@ const ModalExample = () => {
   const dispatch = useDispatch();
   const dictionary = useDictionary();
 
-  const handleClick = useCallback(() => dispatch(openModal(MODAL.EXAMPLE, modalParams)), [
-    dispatch,
-  ]);
+  const handleClick = useCallback(
+    () => dispatch(openModal(MODAL.EXAMPLE, modalParams)),
+    [dispatch],
+  );
 
   return (
     <Page title={dictionary.get('page.modal-example')}>

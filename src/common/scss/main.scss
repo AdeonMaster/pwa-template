@@ -8,16 +8,14 @@
   @import 'bootstrap_extend.scss';
   @import 'node_modules/bootstrap/scss/bootstrap';
 
-  .invalid-tooltip {
-    position: relative;
-    top: 0px;
-    display: block;
-  }
-  select.form-control.is-invalid {
-    background-position: right 1rem center;
-  }
-  .form-row > .col > .invalid-tooltip, .form-row > [class*="col-"] > .invalid-tooltip {
-    left: 0px;
+  // tooltip
+  .input-group {
+    .input-group-prepend {
+      &+input.is-invalid {
+        border-top-right-radius: 0.25rem !important;
+        border-bottom-right-radius: 0.25rem !important;
+      }
+    }
   }
 }
 
@@ -25,15 +23,13 @@
   @import 'bootstrap_extend.scss';
   @import 'node_modules/bootstrap/scss/bootstrap';
 
-  .invalid-tooltip {
-    position: relative;
-    top: 0px;
-    display: block;
-  }
-  select.form-control.is-invalid {
-    background-position: right 1rem center;
-  }
-  .form-row > .col > .invalid-tooltip, .form-row > [class*="col-"] > .invalid-tooltip {
-    left: 0px;
+  // tooltip
+  .input-group {
+    .input-group-prepend {
+      &+input.is-invalid {
+        border-top-right-radius: 0.25rem !important;
+        border-bottom-right-radius: 0.25rem !important;
+      }
+    }
   }
 }
